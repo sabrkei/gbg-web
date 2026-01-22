@@ -9,7 +9,7 @@
   --text-dim: #4b5563;
   --bg-current: var(--bg-light);
   --border-color: #767676;
-  --header-bg: rgba(255, 255, 255, 0.0); /* Fully transparent for glass effect */
+  --header-bg: rgba(14, 13, 13, 0.608);
   --btn-text: #ffffff;
   --input-bg: #ffffff;
 }
