@@ -8,7 +8,7 @@
   --text-main: #ffffff;
   --text-dim: #e0e0e0;     /* Lighter gray for better contrast on dark */
   --bg-current: var(--bg-dark);
-  --border-color: #333333;
+  --border-color: #555555; /* Increased contrast for UI components */
   --header-bg: rgba(0, 0, 0, 0.8);
   --btn-text: #000000;
   --input-bg: #111111;
@@ -30,6 +30,8 @@ body {
   font-family: 'Montserrat', sans-serif;
   background-color: var(--bg-current);
   color: var(--text-main);
+  font-size: 1rem; /* Explicit base size for accessibility */
+  line-height: 1.6; /* Improved readability */
   overflow: hidden;
   transition: background-color 0.5s ease, color 0.5s ease;
 }
@@ -42,7 +44,7 @@ body {
   --card-bg: #f8f9fa;
   --color-accent: #006400; /* Dark Green - High contrast on white */
   --color-accent-hover: #004d00;
-  --border-color: #cccccc;
+  --border-color: #767676; /* Darker border for 3:1 contrast against white */
   --header-bg: rgba(255, 255, 255, 0.95);
   --btn-text: #ffffff;
   --input-bg: #f0f0f0;
@@ -57,7 +59,7 @@ body {
   --card-bg: #0a0a0a;
   --text-main: #ffffff;
   --text-dim: #e0e0e0;
-  --border-color: #333333;
+  --border-color: #555555;
   --header-bg: rgba(0, 0, 0, 0.8);
   --btn-text: #000000;
   --input-bg: #0a0a0a;
@@ -97,7 +99,7 @@ body {
 
 /* Ensure video overlay is always dark for white text visibility in Hero */
 .video-overlay {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.75); /* Increased opacity for better text contrast */
 }
 
 [data-theme="dark"] .video-overlay {
@@ -145,7 +147,7 @@ body {
   color: var(--text-main);
   text-decoration: none;
   margin: 0 15px;
-  font-size: 0.85rem;
+  font-size: 1rem; /* Increased for readability */
   letter-spacing: 2px;
   text-transform: uppercase;
   transition: 0.3s;
@@ -225,7 +227,7 @@ body {
 }
 
 .video-overlay {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.75);
 }
 
 .hero-text {
@@ -241,7 +243,7 @@ h1 {
 }
 
 .pre-heading {
-  font-size: 0.9rem;
+  font-size: 1rem; /* Increased size */
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -256,7 +258,7 @@ h1 {
 .sub-heading {
   font-style: italic;
   font-weight: 400;
-  color: #cccccc; /* Fixed color for video overlay */
+  color: #e0e0e0; /* Lightened for better contrast on overlay */
 }
 
 /* ABOUT */
@@ -511,7 +513,7 @@ h1 {
 .github-link {
   color: var(--color-accent);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.9rem; /* Increased size */
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -612,7 +614,7 @@ h1 {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1rem; /* Increased size */
   color: var(--text-main);
 }
 
@@ -829,7 +831,7 @@ h1 {
   }
 
   .section-indicator {
-    font-size: 0.75rem;
+    font-size: 0.875rem; /* Increased size */
     min-width: auto;
     margin-right: 8px;
   }
@@ -948,7 +950,7 @@ h1 {
   }
 
   .section-indicator {
-    font-size: 0.7rem;
+    font-size: 0.8rem; /* Increased size */
     min-width: auto;
     margin-right: 8px;
   }
@@ -1068,7 +1070,7 @@ h1 {
   }
 
   .github-link {
-    font-size: 0.7rem;
+    font-size: 0.85rem; /* Increased size */
   }
 
   .github-link i {
