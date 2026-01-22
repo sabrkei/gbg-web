@@ -170,6 +170,8 @@ body {
 .header-socials a {
   color: var(--text-main);
   transition: color 0.3s ease;
+  display: inline-block; /* Ensure padding affects hit area */
+  padding: 8px;          /* Accessibility: Increase tap target size */
 }
 
 .header-socials a:hover {
@@ -204,6 +206,8 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 0 8%;
+  content-visibility: auto;      /* Performance: Skip rendering off-screen content */
+  contain-intrinsic-size: 100vh; /* Performance: Prevent scrollbar jumps */
 }
 
 .grid-2 {
@@ -500,6 +504,7 @@ h1 {
   height: 200px;
   width: 100%;
   object-fit: cover;
+  aspect-ratio: 16 / 9; /* Performance: Reserve space to reduce CLS */
 }
 
 .project-info {
@@ -577,8 +582,8 @@ h1 {
 }
 
 .cv-controls a {
-  width: 36px;
-  height: 36px;
+  width: 48px;  /* Accessibility: Minimum tap target size (48px) */
+  height: 48px;
   background: rgba(0, 0, 0, 0.8);
   border: 1px solid #444;
   border-radius: 6px;
@@ -676,6 +681,8 @@ h1 {
 .footer-socials a {
   color: var(--text-main);
   font-size: 1.5rem;
+  display: inline-block;
+  padding: 10px; /* Accessibility: Increase tap target size */
   transition: color 0.3s ease;
 }
 
@@ -785,7 +792,7 @@ h1 {
 .mobile-nav a {
   color: var(--text-main);
   text-decoration: none;
-  padding: 15px 0;
+  padding: 20px 0; /* Accessibility: Increase tap target size */
   font-size: 1rem;
   letter-spacing: 1px;
   text-transform: uppercase;
