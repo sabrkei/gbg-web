@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
   <head>
     <meta charset="UTF-8">
@@ -85,28 +85,22 @@
     <script src="script.js" defer></script>
   </head>
 
-  <body :data-theme="activeTheme">
+  <body>
     <div id="app">
       <div class="header-sensor" @mouseenter="isHeaderForced = true"></div>
 
       <header class="main-header" :class="{ 'header-hidden': isHeaderHidden && !isHeaderForced }"
         @mouseenter="isHeaderForced = true" @mouseleave="isHeaderForced = false">
 
-        <nav class="desktop-nav" aria-label="Main Navigation">
-          <a href="#" @click.prevent="scrollToSection('portfolio')">Portfolio</a>
-          <a href="#" @click.prevent="scrollToSection('customer-projects')">Customer Projects</a>
-          <a href="#" @click.prevent="scrollToSection('skills')">Skills</a>
-          <a href="#" @click.prevent="scrollToSection('about-me')">About</a>
-          <a href="#" @click.prevent="scrollToSection('contact')">Contact</a>
-        </nav>
-
-        <div class="right-group">
+        <div class="left-group">
           <span class="section-indicator">{{ currentSectionNum }}</span>
           <div class="header-socials">
             <a href="https://www.linkedin.com/in/scottabrahamkeinstrom/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
             <a href="https://codepen.io/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="CodePen Profile"><i class="fab fa-codepen"></i></a>
           </div>
+        </div>
+        <div class="right-group">
           <button class="mobile-menu-toggle" @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Toggle Navigation Menu">
             <i :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
           </button>
@@ -133,6 +127,9 @@
           <div class="hero-text">
             <img src="images/gbg-web.webp" alt="GBG-Web Logo" class="hero-logo" width="300" height="117">
             <h1>Designer & Developer <br><span class="sub-heading">focused on modern web.</span></h1>
+          </div>
+          <div class="hero-scroll-prompt" @click="scrollToSection('portfolio')">
+            <i class="fas fa-chevron-down bounce-anim"></i>
           </div>
         </section>
 
@@ -259,7 +256,7 @@
 
             <p>If I sound like the type of person you’d like working as part of your team, please don’t hesitate to get
               in touch. I’m currently searching for internship (LIA) opportunities — and I’d love to hear from you –
-              <strong>contact@gbg-web.com</strong>
+              <strong><a href="mailto:contact@gbg-web.com">contact@gbg-web.com</a></strong>
             </p>
 
             <div class="scroll-prompt" @click="handleAboutIconClick">

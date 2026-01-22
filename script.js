@@ -106,7 +106,7 @@ createApp({
 
     const toggleTheme = () => {
       activeTheme.value = activeTheme.value === "dark" ? "light" : "dark";
-      document.body.setAttribute("data-theme", activeTheme.value);
+      document.documentElement.setAttribute("data-theme", activeTheme.value);
     };
 
     let ticking = false;
