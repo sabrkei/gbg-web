@@ -68,7 +68,7 @@ body {
   --text-main: #ffffff;
   --text-dim: #e0e0e0;
   --border-color: #555555;
-  --header-bg: rgba(0, 0, 0, 0.8);
+  --header-bg: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
   --btn-text: #000000;
   --input-bg: #0a0a0a;
 }
@@ -779,6 +779,10 @@ h1 {
 #contact .contact-sidebar h2,
 #contact .footer-socials a {
   color: #ffffff;
+}
+
+#contact .footer-socials a:hover {
+  color: var(--color-accent);
 }
 
 #contact .contact-form {
