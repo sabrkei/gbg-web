@@ -165,7 +165,7 @@
         <section id="skills" class="section grid-2" data-num="04 / 06">
           <h2 class="sr-only">Skills</h2>
           <div>
-            <h2>Technical Skillset / Stack</h2><br>
+            <h2 class="reel-title">Technical Skillset / Stack</h2>
             <div class="icon-grid">
               <i class="fab fa-js icon-js"></i>
               <i class="fab fa-vuejs icon-vue"></i>
@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="cv-container">
-            <h2>CV</h2><br>
+            <h2 class="reel-title">CV</h2>
             <div class="cv-wrapper">
               <iframe src="https://docs.google.com/gview?url=https://gbg-web.com/assets/SAKCV.pdf&embedded=true" class="cv-iframe" title="CV Viewer" loading="lazy"></iframe>
               <div class="cv-controls">
@@ -198,7 +198,7 @@
             </div>
           </div>
           <div class="split-side text-side" ref="aboutTextSide" @scroll="checkAboutScroll">
-            <h2>About Me</h2><br>
+            <h2 class="reel-title">About Me</h2>
 
             <p>Hi! I’m Scott, a front-end development student.</p>
 
@@ -300,9 +300,16 @@
         </section>
       </div>
 
-      <button class="fab-btn theme-toggle" @click="toggleTheme" title="Toggle Theme" aria-label="Toggle Dark/Light Theme">
-        <i :class="activeTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun'"></i>
-      </button>
+      <div class="theme-switch-container">
+        <input type="checkbox" class="theme-checkbox" id="theme-toggle" @change="toggleTheme" :checked="activeTheme === 'light'">
+        <label for="theme-toggle" class="theme-label" title="Toggle Theme" aria-label="Toggle Dark/Light Theme">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+          <div class="ball"></div>
+        </label>
+      </div>
+      <audio ref="switchAudio" id="switch-sound" src="audio/switch.mp3"></audio>
+
       <button class="fab-btn scroll-up" :class="{ visible: isScrollUpVisible }" @click="scrollToTop" aria-label="Scroll to Top">
         <i class="fas fa-arrow-up"></i>
       </button>

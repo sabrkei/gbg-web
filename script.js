@@ -11,6 +11,7 @@ createApp({
     const aboutTextSide = ref(null);
     const isAboutAtBottom = ref(false);
     const mobileMenuOpen = ref(false);
+    const switchAudio = ref(null);
 
     // Lego brick overlays - varied sizes on a 12x10 grid
     // These are just the brick shapes (borders/studs), not image slices
@@ -105,6 +106,10 @@ createApp({
     ]);
 
     const toggleTheme = () => {
+      if (switchAudio.value) {
+        switchAudio.value.currentTime = 0;
+        switchAudio.value.play().catch(() => {});
+      }
       activeTheme.value = activeTheme.value === "dark" ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", activeTheme.value);
     };
@@ -170,6 +175,7 @@ createApp({
       aboutTextSide,
       isAboutAtBottom,
       mobileMenuOpen,
+      switchAudio,
       projects,
       customerProjects,
       toggleTheme,
