@@ -96,10 +96,10 @@
         </a>
 
         <nav class="desktop-nav" aria-label="Main Navigation">
-          <a href="#" @click.prevent="scrollToSection('about-me')">About</a>
           <a href="#" @click.prevent="scrollToSection('portfolio')">Portfolio</a>
           <a href="#" @click.prevent="scrollToSection('customer-projects')">Customer Projects</a>
           <a href="#" @click.prevent="scrollToSection('skills')">Skills</a>
+          <a href="#" @click.prevent="scrollToSection('about-me')">About</a>
           <a href="#" @click.prevent="scrollToSection('contact')">Contact</a>
         </nav>
 
@@ -117,10 +117,10 @@
       </header>
 
       <nav class="mobile-nav" :class="{ 'mobile-nav-open': mobileMenuOpen }" aria-label="Mobile Navigation">
-        <a href="#" @click.prevent="scrollToSection('about-me'); mobileMenuOpen = false">About</a>
         <a href="#" @click.prevent="scrollToSection('portfolio'); mobileMenuOpen = false">Portfolio</a>
         <a href="#" @click.prevent="scrollToSection('customer-projects'); mobileMenuOpen = false">Customer Projects</a>
         <a href="#" @click.prevent="scrollToSection('skills'); mobileMenuOpen = false">Skills</a>
+        <a href="#" @click.prevent="scrollToSection('about-me'); mobileMenuOpen = false">About</a>
         <a href="#" @click.prevent="scrollToSection('contact'); mobileMenuOpen = false">Contact</a>
       </nav>
 
@@ -139,7 +139,64 @@
           </div>
         </section>
 
-        <section id="about-me" class="section split-layout" data-num="02 / 06">
+        <section id="portfolio" class="section" data-num="02 / 06">
+          <h2 class="reel-title">Personal Portfolio</h2>
+          <div class="portfolio-reel">
+            <div v-for="(project, index) in projects" :key="index" class="project-card">
+              <img :src="project.image" :alt="project.title" class="project-img" loading="lazy" width="380" height="200" decoding="async">
+              <div class="project-info">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+                <a :href="project.link" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repo</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="customer-projects" class="section" data-num="03 / 06">
+          <h2 class="reel-title">Customer Projects</h2>
+          <div class="portfolio-reel">
+            <div v-for="(project, index) in customerProjects" :key="index" class="project-card client-card">
+              <img :src="project.image" :alt="project.title" class="project-img" loading="lazy" width="380" height="200" decoding="async">
+              <div class="project-info">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+                <a :href="project.link" target="_blank" class="github-link"><i class="fas fa-external-link-alt"></i>
+                  View Project</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" class="section grid-2" data-num="04 / 06">
+          <div>
+            <h3>Technical Skillset / Stack</h3><br>
+            <div class="icon-grid">
+              <i class="fab fa-js icon-js"></i>
+              <i class="fab fa-vuejs icon-vue"></i>
+              <i class="fab fa-react icon-react"></i>
+              <i class="fab fa-node-js icon-node"></i>
+              <i class="fab fa-html5 icon-html"></i>
+              <i class="fab fa-css3-alt icon-css"></i>
+              <i class="fa-brands fa-wordpress"></i>
+              <i class="fa-brands fa-sass"></i>
+              <i class="devicon-typescript-plain colored"></i>
+
+            </div>
+          </div>
+          <div class="cv-container">
+            <h3>CV</h3><br>
+            <div class="cv-wrapper">
+              <iframe src="https://docs.google.com/gview?url=https://gbg-web.com/assets/SAKCV.pdf&embedded=true" class="cv-iframe" title="CV Viewer" loading="lazy"></iframe>
+              <div class="cv-controls">
+                <a href="assets/SAKCV.pdf" target="_blank" title="Open Fullscreen" aria-label="Open CV Fullscreen"><i class="fas fa-expand"></i></a>
+                <a href="assets/SAKCV.pdf" download title="Download CV" aria-label="Download CV"><i class="fas fa-download"></i></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about-me" class="section split-layout" data-num="05 / 06">
           <div class="split-side animation-side">
             <div class="lego-photo-mosaic">
               <div v-for="n in brickCount" :key="n" class="lego-tile" :style="getTileStyle(n)"></div>
@@ -209,63 +266,6 @@
 
             <div class="scroll-prompt" @click="handleAboutIconClick">
               <i :class="isAboutAtBottom ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="bounce-anim"></i>
-            </div>
-          </div>
-        </section>
-
-        <section id="portfolio" class="section" data-num="03 / 06">
-          <h2 class="reel-title">Personal Portfolio</h2>
-          <div class="portfolio-reel">
-            <div v-for="(project, index) in projects" :key="index" class="project-card">
-              <img :src="project.image" :alt="project.title" class="project-img" loading="lazy" width="380" height="200" decoding="async">
-              <div class="project-info">
-                <h3>{{ project.title }}</h3>
-                <p>{{ project.description }}</p>
-                <a :href="project.link" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repo</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="customer-projects" class="section" data-num="04 / 06">
-          <h2 class="reel-title">Customer Projects</h2>
-          <div class="portfolio-reel">
-            <div v-for="(project, index) in customerProjects" :key="index" class="project-card client-card">
-              <img :src="project.image" :alt="project.title" class="project-img" loading="lazy" width="380" height="200" decoding="async">
-              <div class="project-info">
-                <h3>{{ project.title }}</h3>
-                <p>{{ project.description }}</p>
-                <a :href="project.link" target="_blank" class="github-link"><i class="fas fa-external-link-alt"></i>
-                  View Project</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" class="section grid-2" data-num="05 / 06">
-          <div>
-            <h3>Technical Skillset / Stack</h3><br>
-            <div class="icon-grid">
-              <i class="fab fa-js icon-js"></i>
-              <i class="fab fa-vuejs icon-vue"></i>
-              <i class="fab fa-react icon-react"></i>
-              <i class="fab fa-node-js icon-node"></i>
-              <i class="fab fa-html5 icon-html"></i>
-              <i class="fab fa-css3-alt icon-css"></i>
-              <i class="fa-brands fa-wordpress"></i>
-              <i class="fa-brands fa-sass"></i>
-              <i class="devicon-typescript-plain colored"></i>
-
-            </div>
-          </div>
-          <div class="cv-container">
-            <h3>CV</h3><br>
-            <div class="cv-wrapper">
-              <iframe src="https://docs.google.com/gview?url=https://gbg-web.com/assets/SAKCV.pdf&embedded=true" class="cv-iframe" title="CV Viewer" loading="lazy"></iframe>
-              <div class="cv-controls">
-                <a href="assets/SAKCV.pdf" target="_blank" title="Open Fullscreen" aria-label="Open CV Fullscreen"><i class="fas fa-expand"></i></a>
-                <a href="assets/SAKCV.pdf" download title="Download CV" aria-label="Download CV"><i class="fas fa-download"></i></a>
-              </div>
             </div>
           </div>
         </section>
