@@ -165,7 +165,7 @@
         <section id="skills" class="section grid-2" data-num="04 / 06">
           <h2 class="sr-only">Skills</h2>
           <div>
-            <h3>Technical Skillset / Stack</h3><br>
+            <h2>Technical Skillset / Stack</h2><br>
             <div class="icon-grid">
               <i class="fab fa-js icon-js"></i>
               <i class="fab fa-vuejs icon-vue"></i>
@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="cv-container">
-            <h3>CV</h3><br>
+            <h2>CV</h2><br>
             <div class="cv-wrapper">
               <iframe src="https://docs.google.com/gview?url=https://gbg-web.com/assets/SAKCV.pdf&embedded=true" class="cv-iframe" title="CV Viewer" loading="lazy"></iframe>
               <div class="cv-controls">
@@ -265,34 +265,38 @@
           </div>
         </section>
 
-        <section id="contact" class="section grid-2" data-num="06 / 06">
-          <div class="contact-sidebar">
-            <img src="images/profilephoto.webp" alt="Scott - Front-End Developer" class="profile-img" width="160" height="160" loading="lazy" decoding="async">
-            <h2>Let's Connect</h2>
-            <p><i class="fas fa-envelope"></i> contact@gbg-web.com</p>
-            <div class="footer-socials">
-              <a href="https://www.linkedin.com/in/scottabrahamkeinstrom/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
-              <a href="https://github.com/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
-              <a href="https://codepen.io/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="CodePen Profile"><i class="fab fa-codepen"></i></a>
+        <section id="contact" class="section split-layout" data-num="06 / 06">
+          <div class="contact-split-side">
+            <div class="contact-sidebar">
+              <img src="images/profilephoto.webp" alt="Scott - Front-End Developer" class="profile-img" width="160" height="160" loading="lazy" decoding="async">
+              <h2>Let's Connect</h2>
+              <p><i class="fas fa-envelope"></i> contact@gbg-web.com</p>
+              <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/scottabrahamkeinstrom/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                <a href="https://codepen.io/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="CodePen Profile"><i class="fab fa-codepen"></i></a>
+              </div>
             </div>
           </div>
-          <form class="contact-form" @submit.prevent aria-label="Contact Form">
-            <div class="form-row">
-              <div>
-                <label for="name" class="form-label">Name</label>
-                <input type="text" id="name" placeholder="Name" required autocomplete="name">
+          <div class="contact-split-side">
+            <form class="contact-form" @submit.prevent aria-label="Contact Form">
+              <div class="form-row">
+                <div>
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" id="name" placeholder="Name" required autocomplete="name">
+                </div>
+                <div>
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" id="email" placeholder="Email" required autocomplete="email">
+                </div>
               </div>
               <div>
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" placeholder="Email" required autocomplete="email">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
               </div>
-            </div>
-            <div>
-              <label for="message" class="form-label">Message</label>
-              <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-          </form>
+              <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+          </div>
         </section>
       </div>
 
