@@ -26,6 +26,14 @@ html {
   transition: background-color 0.5s ease;
 }
 
+/* Ensure form elements inherit font styles */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
 /* Focus Indicator for Keyboard Users */
 :focus-visible {
   outline: 3px solid var(--color-accent);
@@ -236,6 +244,7 @@ body {
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  overscroll-behavior-y: none;
 }
 
 .section {
@@ -648,7 +657,7 @@ h1 {
   gap: 20px;
   background: var(--card-bg);
   padding: 40px;
-  border-radius: 16px;
+  border-radius: 12px;
   border: 1px solid var(--border-color);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -1118,11 +1127,12 @@ h1 {
 
   #contact.split-layout {
     gap: 0;
-    padding-bottom: 120px; /* Ensure form button clears the FABs */
+    padding-bottom: 180px; /* Ensure form button clears the FABs */
+    min-height: 100dvh;
   }
 
   .contact-split-side {
-    padding: 20px;
+    padding: 10px 20px;
     height: auto;
   }
 
@@ -1222,13 +1232,13 @@ h1 {
   }
 
   .contact-sidebar {
-    margin-bottom: 5px;
+    margin-bottom: 0;
   }
 
   .profile-img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 15px;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
   }
 
   .contact-sidebar h3 {
@@ -1250,7 +1260,7 @@ h1 {
   }
 
   .contact-form {
-    gap: 10px;
+    gap: 8px;
   }
 
   .form-row {
@@ -1259,12 +1269,12 @@ h1 {
   }
 
   .contact-form {
-    padding: 20px;
+    padding: 15px;
   }
 
   .contact-form input,
   .contact-form textarea {
-    padding: 12px;
+    padding: 10px;
     font-size: 1rem;
   }
 
