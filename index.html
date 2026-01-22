@@ -135,7 +135,7 @@
 
         <section id="portfolio" class="section" data-num="02 / 06">
           <h2 class="reel-title">Personal Portfolio</h2>
-          <div class="portfolio-reel">
+          <div class="project-grid">
             <div v-for="(project, index) in projects" :key="index" class="project-card">
               <img :src="project.image" :alt="project.title" class="project-img" loading="lazy" width="380" height="200" decoding="async">
               <div class="project-info">
@@ -149,7 +149,7 @@
 
         <section id="customer-projects" class="section" data-num="03 / 06">
           <h2 class="reel-title">Customer Projects</h2>
-          <div class="portfolio-reel">
+          <div class="project-grid">
             <div v-for="(project, index) in customerProjects" :key="index" class="project-card client-card">
               <img :src="project.image" :alt="project.title" class="project-img" loading="lazy" width="380" height="200" decoding="async">
               <div class="project-info">
