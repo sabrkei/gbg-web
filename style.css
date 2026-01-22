@@ -1,17 +1,17 @@
 :root {
   /* WCAG Compliant Colors */
-  --color-accent: #60a5fa; /* Sky Blue - High contrast on dark */
-  --color-accent-hover: #3b82f6;
+  --color-accent: #0056b3; /* Royal Blue - High contrast on white */
+  --color-accent-hover: #004494;
   --bg-dark: #0f172a;      /* Deep Slate - Softer/richer than pure black */
-  --bg-light: #f3f4f6;     /* Soft Gray - Easier on the eyes than pure white */
-  --card-bg: #111111;
-  --text-main: #ffffff;
-  --text-dim: #e0e0e0;     /* Lighter gray for better contrast on dark */
-  --bg-current: var(--bg-dark);
-  --border-color: #555555; /* Increased contrast for UI components */
-  --header-bg: rgba(0, 0, 0, 0.8);
-  --btn-text: #000000;
-  --input-bg: #111111;
+  --bg-light: #e2e8f0;     /* Slate 200 - Distinct cool gray, not white */
+  --card-bg: #ffffff;
+  --text-main: #1f2937;
+  --text-dim: #4b5563;
+  --bg-current: var(--bg-light);
+  --border-color: #767676;
+  --header-bg: rgba(255, 255, 255, 0.0); /* Fully transparent for glass effect */
+  --btn-text: #ffffff;
+  --input-bg: #ffffff;
 }
 
 * {
@@ -45,7 +45,7 @@ body {
   --color-accent: #0056b3; /* Royal Blue - High contrast on white */
   --color-accent-hover: #004494;
   --border-color: #767676; /* Darker border for 3:1 contrast against white */
-  --header-bg: rgba(255, 255, 255, 0.1); /* Almost transparent glass effect */
+  --header-bg: rgba(255, 255, 255, 0.0); /* Fully transparent glass effect */
   --btn-text: #ffffff;
   --input-bg: #ffffff;
   background-color: var(--bg-light);
@@ -55,6 +55,7 @@ body {
 /* Dark theme - Default */
 [data-theme="dark"] {
   --color-accent: #60a5fa;
+  --color-accent-hover: #3b82f6;
   --bg-current: #0f172a;   /* Deep Slate */
   --card-bg: #1e293b;      /* Lighter Slate for cards */
   --text-main: #ffffff;

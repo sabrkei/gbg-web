@@ -2,7 +2,7 @@ const { createApp, ref, onMounted } = Vue;
 
 createApp({
   setup() {
-    const activeTheme = ref("dark");
+    const activeTheme = ref("light");
     const currentSectionNum = ref("01 / 06");
     const isHeaderHidden = ref(false);
     const isHeaderForced = ref(false);
