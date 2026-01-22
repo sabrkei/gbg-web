@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBG-Web | Scott - Front-End Developer & Designer in Gothenburg</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Scott is a front-end developer and designer based in Gothenburg, Sweden. Specializing in Vue.js, React, and modern web development. Available for internship opportunities.">
+    <meta name="keywords" content="front-end developer, web designer, Vue.js, React, JavaScript, Gothenburg, Sweden, portfolio, web development, UI/UX">
+    <meta name="author" content="Scott">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://gbg-web.com">
+    <link rel="icon" type="image/webp" href="images/gbg-web.webp">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gbg-web.com">
+    <meta property="og:title" content="GBG-Web | Scott - Front-End Developer & Designer">
+    <meta property="og:description" content="Front-end developer and designer based in Gothenburg, Sweden. Specializing in Vue.js, React, and modern web development.">
+    <meta property="og:image" content="https://gbg-web.com/images/profilephoto.webp">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="GBG-Web">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://gbg-web.com">
+    <meta name="twitter:title" content="GBG-Web | Scott - Front-End Developer & Designer">
+    <meta name="twitter:description" content="Front-end developer and designer based in Gothenburg, Sweden. Specializing in Vue.js, React, and modern web development.">
+    <meta name="twitter:image" content="https://gbg-web.com/profilephoto.webp">
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#90ee90">
+    <meta name="geo.region" content="SE-O">
+    <meta name="geo.placename" content="Gothenburg">
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Scott",
+      "url": "https://gbg-web.com",
+      "image": "https://gbg-web.com/profilephoto.webp",
+      "jobTitle": "Front-End Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "GBG-Web"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gothenburg",
+        "addressCountry": "SE"
+      },
+      "email": "contact@gbg-web.com",
+      "knowsAbout": ["JavaScript", "Vue.js", "React", "HTML", "CSS", "TypeScript", "Node.js", "Web Development", "UI/UX Design"],
+      "sameAs": []
+    }
+    </script>
+
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <!-- Preload LCP Image for Mobile Speed -->
+    <link rel="preload" as="image" href="images/hero-poster.webp" fetchpriority="high">
+
+    <!-- Optimize Google Fonts: Only load used weights & load async -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Defer Font Awesome to prevent render blocking -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" media="print" onload="this.media='all'">
+    <!-- Defer Vue and Main Script -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body :data-theme="activeTheme">
+    <div id="app">
+      <div class="header-sensor" @mouseenter="isHeaderForced = true"></div>
+
+      <header class="main-header" :class="{ 'header-hidden': isHeaderHidden && !isHeaderForced }"
+        @mouseenter="isHeaderForced = true" @mouseleave="isHeaderForced = false">
+        <a href="#" @click.prevent="scrollToTop">
+          <img src="images/gbg-web.webp" alt="GBG-Web Logo" class="site-logo" width="180" height="70">
+        </a>
+
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <a href="#" @click.prevent="scrollToSection('about-me')">About</a>
+          <a href="#" @click.prevent="scrollToSection('portfolio')">Portfolio</a>
+          <a href="#" @click.prevent="scrollToSection('customer-projects')">Customer Projects</a>
+          <a href="#" @click.prevent="scrollToSection('skills')">Skills</a>
+          <a href="#" @click.prevent="scrollToSection('contact')">Contact</a>
+        </nav>
+
+        <div class="right-group">
+          <span class="section-indicator">{{ currentSectionNum }}</span>
+          <div class="header-socials">
+            <a href="https://www.linkedin.com/in/scottabrahamkeinstrom/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+            <a href="https://codepen.io/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="CodePen Profile"><i class="fab fa-codepen"></i></a>
+          </div>
+          <button class="mobile-menu-toggle" @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Toggle Navigation Menu">
+            <i :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+          </button>
+        </div>
+      </header>
+
+      <nav class="mobile-nav" :class="{ 'mobile-nav-open': mobileMenuOpen }" aria-label="Mobile Navigation">
+        <a href="#" @click.prevent="scrollToSection('about-me'); mobileMenuOpen = false">About</a>
+        <a href="#" @click.prevent="scrollToSection('portfolio'); mobileMenuOpen = false">Portfolio</a>
+        <a href="#" @click.prevent="scrollToSection('customer-projects'); mobileMenuOpen = false">Customer Projects</a>
+        <a href="#" @click.prevent="scrollToSection('skills'); mobileMenuOpen = false">Skills</a>
+        <a href="#" @click.prevent="scrollToSection('contact'); mobileMenuOpen = false">Contact</a>
+      </nav>
+
+      <div class="scroll-container" ref="scrollContainer" @scroll.passive="handleScroll">
+
+        <section id="hero" class="section" data-num="01 / 06">
+          <div class="hero-video-container">
+            <video autoplay muted loop playsinline class="hero-video" poster="images/hero-poster.webp" width="1920" height="1080" aria-label="Background video of Gothenburg harbor">
+              <source src="videos/hero.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+          </div>
+          <div class="hero-text">
+            <div class="pre-heading">Welcome</div>
+            <h1>Designer & Developer <br><span class="sub-heading">focused on modern web.</span></h1>
+          </div>
+        </section>
+
+        <section id="about-me" class="section split-layout" data-num="02 / 06">
+          <div class="split-side animation-side">
+            <div class="lego-photo-mosaic">
+              <div v-for="n in brickCount" :key="n" class="lego-tile" :style="getTileStyle(n)"></div>
+            </div>
+          </div>
+          <div class="split-side text-side" ref="aboutTextSide" @scroll="checkAboutScroll">
+            <h2>About Me</h2><br>
+
+            <p>Hi! I’m Scott, a front-end development student.</p>
+
+            <p>For as long as I can remember, I’ve always, always loved being creative. As a kid growing up in England,
+              my parents used to joke about how I would sit for hours on end playing with Lego, building things,
+              dismantling, re-building and never tiring of the experience. If I wasn’t making things out of Lego, I’d be
+              drawing
+              or finding some
+              other artistic pursuit.</p>
+
+            <p>My love of this transitioned as I became slightly older and throughout my teens years as it happened to
+              coincide with an ever changing more digital world.</p>
+
+            <p>I’d create blogs, small webpages and continue to make things but as is sadly often the case with many
+              people – I fell into the cooperate trap and became swallowed up by day jobs that I didn’t enjoy, very
+              little social time and as a result the creative spark in me slowly extinguished.</p>
+
+            <p>Fast forward a few years to 2007 and I end up meeting my partner, now wife Emelie, and after a short
+              period of travelling back and forward to Sweden to visit I made the decision to move permanently.</p>
+
+            <p>I won’t pretend that it was a particularly easy transition but nevertheless, I was fortunate enough to
+              find work after a few months of moving here – despite having absolutely no knowledge of Swedish at the
+              time. It took a few years to fully adjust to my surroundings but I ultimately fell in love my new home. I
+              mean, How could you not?</p>
+
+            <p>Fast forward to 2024 and after having worked for many years in IT I found myself being made redundant
+              from a job I truly enjoyed, and in my mid 30’s I faced a choice — continue in comfortable, but ultimately
+              uninspiring roles,
+              or finally take the leap into something I’d always dreamed of. So, at 37, I decided to study web
+              development —
+              confronting my old impostor syndrome head-on and reigniting the creative spark that started all those
+              years ago
+              with Lego and
+              sketchpads.</p>
+
+            <p>Being that little bit older and having so much work experience it definitely feels a little strange
+              adjusting to being a student again but my thirst for learning and being creative has been reignited and
+              I’m really
+              enjoying it.</p>
+
+            <p>My goal is now very simple: to make technology feel more human — beautiful, intuitive, and just a little
+              bit fun. It’s important we don’t lose sight of that and make sure we continue to do the things we love and
+              enjoy.
+              I just
+              wish I could have had the 38 year old me tell me that when I was 20 😊</p>
+
+            <p>When I’m not coding, I enjoy exercising and training — an area I hope to develop practical, everyday
+              tools for that can be used (and loved) by other like-minded tech and fitness enthusiasts but most
+              importantly, I
+              love
+              spending time with my beautiful three children, who never fail to remind me how creativity and curiosity
+              start —
+              and thrive — at
+              home.</p>
+
+            <p>If I sound like the type of person you’d like working as part of your team, please don’t hesitate to get
+              in touch. I’m currently searching for internship (LIA) opportunities — and I’d love to hear from you –
+              <strong>contact@gbg-web.com</strong>
+            </p>
+
+            <div class="scroll-prompt" @click="handleAboutIconClick">
+              <i :class="isAboutAtBottom ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="bounce-anim"></i>
+            </div>
+          </div>
+        </section>
+
+        <section id="portfolio" class="section" data-num="03 / 06">
+          <h2 class="reel-title">Personal Portfolio</h2>
+          <div class="portfolio-reel">
+            <div v-for="(project, index) in projects" :key="index" class="project-card">
+              <img :src="project.image" :alt="project.title" class="project-img" loading="lazy" width="380" height="200" decoding="async">
+              <div class="project-info">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+                <a :href="project.link" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repo</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="customer-projects" class="section" data-num="04 / 06">
+          <h2 class="reel-title">Customer Projects</h2>
+          <div class="portfolio-reel">
+            <div v-for="(project, index) in customerProjects" :key="index" class="project-card client-card">
+              <img :src="project.image" :alt="project.title" class="project-img" loading="lazy" width="380" height="200" decoding="async">
+              <div class="project-info">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+                <a :href="project.link" target="_blank" class="github-link"><i class="fas fa-external-link-alt"></i>
+                  View Project</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" class="section grid-2" data-num="05 / 06">
+          <div>
+            <h3>Technical Skillset / Stack</h3><br>
+            <div class="icon-grid">
+              <i class="fab fa-js icon-js"></i>
+              <i class="fab fa-vuejs icon-vue"></i>
+              <i class="fab fa-react icon-react"></i>
+              <i class="fab fa-node-js icon-node"></i>
+              <i class="fab fa-html5 icon-html"></i>
+              <i class="fab fa-css3-alt icon-css"></i>
+              <i class="fa-brands fa-wordpress"></i>
+              <i class="fa-brands fa-sass"></i>
+              <i class="devicon-typescript-plain colored"></i>
+
+            </div>
+          </div>
+          <div class="cv-container">
+            <h3>CV</h3><br>
+            <div class="cv-wrapper">
+              <object data="other/SAKCV.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" type="application/pdf" class="cv-iframe">
+                <p>Unable to display PDF. <a href="other/SAKCV.pdf" download>Download CV</a></p>
+              </object>
+              <div class="cv-toolbar-cover"></div>
+              <div class="cv-controls">
+                <a href="other/SAKCV.pdf" target="_blank" title="Open Fullscreen" aria-label="Open CV Fullscreen"><i class="fas fa-expand"></i></a>
+                <a href="other/SAKCV.pdf" download title="Download CV" aria-label="Download CV"><i class="fas fa-download"></i></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="section grid-2" data-num="06 / 06">
+          <div class="contact-sidebar">
+            <img src="images/profilephoto.webp" alt="Scott - Front-End Developer" class="profile-img" width="160" height="160" loading="lazy" decoding="async">
+            <h3>Let's Connect</h3>
+            <p><i class="fas fa-envelope"></i> contact@gbg-web.com</p>
+            <div class="footer-socials">
+              <a href="https://www.linkedin.com/in/scottabrahamkeinstrom/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+              <a href="https://codepen.io/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="CodePen Profile"><i class="fab fa-codepen"></i></a>
+            </div>
+          </div>
+          <form class="contact-form" @submit.prevent aria-label="Contact Form">
+            <div class="form-row">
+              <input type="text" placeholder="Name" required aria-label="Your Name" autocomplete="name">
+              <input type="email" placeholder="Email" required aria-label="Your Email" autocomplete="email">
+            </div>
+            <textarea placeholder="Your Message" rows="5" required aria-label="Your Message"></textarea>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </section>
+      </div>
+
+      <button class="fab-btn theme-toggle" @click="toggleTheme" title="Toggle Theme" aria-label="Toggle Dark/Light Theme">
+        <i :class="activeTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun'"></i>
+      </button>
+      <button class="fab-btn scroll-up" :class="{ visible: isScrollUpVisible }" @click="scrollToTop" aria-label="Scroll to Top">
+        <i class="fas fa-arrow-up"></i>
+      </button>
+    </div>
+  </body>
+
+</html>
