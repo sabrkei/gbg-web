@@ -1,8 +1,8 @@
 :root {
   /* WCAG Compliant Colors */
-  --color-accent: #90ee90; /* Light Green - High contrast on dark */
-  --color-accent-hover: #76c776;
-  --bg-dark: #050505;
+  --color-accent: #60a5fa; /* Sky Blue - High contrast on dark */
+  --color-accent-hover: #3b82f6;
+  --bg-dark: #0f172a;      /* Deep Slate - Softer/richer than pure black */
   --bg-light: #ffffff;     /* True White for Light Mode */
   --card-bg: #111111;
   --text-main: #ffffff;
@@ -42,8 +42,8 @@ body {
   --text-main: #121212;
   --text-dim: #444444;
   --card-bg: #f8f9fa;
-  --color-accent: #006400; /* Dark Green - High contrast on white */
-  --color-accent-hover: #004d00;
+  --color-accent: #0056b3; /* Royal Blue - High contrast on white */
+  --color-accent-hover: #004494;
   --border-color: #767676; /* Darker border for 3:1 contrast against white */
   --header-bg: rgba(255, 255, 255, 0.95);
   --btn-text: #ffffff;
@@ -54,9 +54,9 @@ body {
 
 /* Dark theme - Default */
 [data-theme="dark"] {
-  --color-accent: #90ee90;
-  --bg-current: #000000;
-  --card-bg: #0a0a0a;
+  --color-accent: #60a5fa;
+  --bg-current: #0f172a;   /* Deep Slate */
+  --card-bg: #1e293b;      /* Lighter Slate for cards */
   --text-main: #ffffff;
   --text-dim: #e0e0e0;
   --border-color: #555555;
@@ -252,7 +252,7 @@ h1 {
 
 /* Ensure pre-heading is visible on dark video in Light Mode */
 [data-theme="light"] .hero-text .pre-heading {
-  color: #90ee90; /* Use the light green from dark mode */
+  color: #60a5fa; /* Use the sky blue from dark mode for contrast on video */
 }
 
 .sub-heading {
