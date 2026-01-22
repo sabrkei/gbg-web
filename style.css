@@ -242,6 +242,13 @@ body {
   color: #ffffff; /* Force white text on video even in light mode */
 }
 
+.hero-logo {
+  width: 300px;
+  max-width: 80vw;
+  height: auto;
+  margin-bottom: 15px;
+}
+
 h1 {
   font-family: 'Lora', serif;
   font-size: clamp(2.5rem, 8vw, 4.5rem);

@@ -91,9 +91,6 @@
 
       <header class="main-header" :class="{ 'header-hidden': isHeaderHidden && !isHeaderForced }"
         @mouseenter="isHeaderForced = true" @mouseleave="isHeaderForced = false">
-        <a href="#" @click.prevent="scrollToTop">
-          <img src="images/gbg-web.webp" alt="GBG-Web Logo" class="site-logo" width="180" height="70">
-        </a>
 
         <nav class="desktop-nav" aria-label="Main Navigation">
           <a href="#" @click.prevent="scrollToSection('portfolio')">Portfolio</a>
@@ -134,7 +131,7 @@
             <div class="video-overlay"></div>
           </div>
           <div class="hero-text">
-            <div class="pre-heading">Welcome</div>
+            <img src="images/gbg-web.webp" alt="GBG-Web Logo" class="hero-logo" width="300" height="117">
             <h1>Designer & Developer <br><span class="sub-heading">focused on modern web.</span></h1>
           </div>
         </section>
