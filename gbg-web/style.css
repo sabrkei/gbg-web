@@ -212,6 +212,9 @@ body {
 .video-overlay {
   position: absolute;
   background-color: var(--bg-dark); /* Prevents white flash */
+  background-image: url('images/hero-poster.webp'); /* Performance: Mobile LCP Fallback */
+  background-size: cover;
+  background-position: center;
   inset: 0;
 }
 
@@ -665,6 +668,7 @@ h1 {
 .footer-socials a {
   color: white;
   font-size: 1.5rem;
+  padding: 12px; /* Accessibility: Increase tap target size to 48px+ */
   transition: color 0.3s ease;
 }
 
@@ -789,6 +793,31 @@ h1 {
 }
 
 /* RESPONSIVE DESIGN */
+
+/* Performance Optimizations for Mobile/Tablet */
+@media (max-width: 768px) {
+  /* Disable heavy video decoding on mobile to improve LCP and Battery */
+  .hero-video {
+    display: none;
+  }
+
+  /* Disable expensive DOM/Paint animation on mobile */
+  .lego-tile {
+    display: none !important;
+  }
+
+  /* Disable expensive backdrop blur on mobile */
+  .main-header, .mobile-nav {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Ensure readability without blur using current theme bg */
+  .main-header {
+    background: var(--bg-current) !important;
+    border-bottom: 1px solid #222;
+  }
+}
 
 /* Mobile/Tablet (1098px and below) */
 @media (max-width: 1098px) {
