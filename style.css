@@ -3,7 +3,7 @@
   --color-accent: #60a5fa; /* Sky Blue - High contrast on dark */
   --color-accent-hover: #3b82f6;
   --bg-dark: #0f172a;      /* Deep Slate - Softer/richer than pure black */
-  --bg-light: #ffffff;     /* True White for Light Mode */
+  --bg-light: #f3f4f6;     /* Soft Gray - Easier on the eyes than pure white */
   --card-bg: #111111;
   --text-main: #ffffff;
   --text-dim: #e0e0e0;     /* Lighter gray for better contrast on dark */
@@ -39,15 +39,15 @@ body {
 /* Light theme - High Contrast */
 [data-theme="light"] {
   --bg-current: var(--bg-light);
-  --text-main: #121212;
-  --text-dim: #444444;
-  --card-bg: #f8f9fa;
+  --text-main: #1f2937;    /* Dark Gray instead of harsh black */
+  --text-dim: #4b5563;
+  --card-bg: #ffffff;      /* White cards to pop against soft gray bg */
   --color-accent: #0056b3; /* Royal Blue - High contrast on white */
   --color-accent-hover: #004494;
   --border-color: #767676; /* Darker border for 3:1 contrast against white */
-  --header-bg: rgba(255, 255, 255, 0.95);
+  --header-bg: rgba(255, 255, 255, 0.1); /* Almost transparent glass effect */
   --btn-text: #ffffff;
-  --input-bg: #f0f0f0;
+  --input-bg: #ffffff;
   background-color: var(--bg-light);
   color: var(--text-main);
 }
@@ -118,7 +118,7 @@ body {
   padding: 15px 40px;
   padding-top: max(15px, env(safe-area-inset-top));
   background: var(--header-bg);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px); /* Increased blur for better readability */
   transition: transform 0.4s ease;
   border-bottom: 1px solid var(--border-color);
 }
