@@ -557,16 +557,6 @@ h1 {
   display: block;
 }
 
-.cv-toolbar-cover {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: #333;
-  z-index: 5;
-}
-
 .cv-controls {
   position: absolute;
   top: 10px;
