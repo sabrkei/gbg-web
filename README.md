@@ -12,7 +12,6 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 - **CSS3** - Custom styling with CSS variables for theming
 - **Font Awesome 6** - Icon library
 - **Devicon** - Technology stack icons
-- **Lottie Animations** - Interactive animations
 - **Google Fonts** - Lora & Montserrat typefaces
 
 ## Features
@@ -20,7 +19,7 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 - Full-viewport scroll-snap sections
 - Dark/Light theme toggle with CSS variables
 - Auto-hiding header on scroll with hover reveal
-- Animated Lottie illustration
+- CSS-animated photo mosaic
 - Horizontal scrolling project cards
 - Responsive design
 - Contact form
@@ -41,7 +40,6 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 │   ├── profilephoto.png        # Profile image
 │   ├── hero-bg.mp4             # Hero section video
 │   ├── SAKCV.pdf               # Resume/CV document
-│   ├── Lego.lottie             # Lottie animation file
 │   │
 │   └── Project Images
 │       ├── thedailygrindlogo.webp
@@ -54,10 +52,10 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 ## Sections
 
 1. **Hero** - Full-screen video background with title
-2. **About Me** - Personal story with Lottie animation
-3. **Portfolio** - Personal projects showcase
-4. **Customer Projects** - Client work showcase
-5. **Skills** - Technical skillset icons + CV viewer
+2. **Portfolio** - Personal projects showcase
+3. **Customer Projects** - Client work showcase
+4. **Skills** - Technical skillset icons + CV viewer
+5. **About Me** - Personal story with a CSS photo mosaic animation
 6. **Contact** - Contact form and social links
 
 ## Getting Started
