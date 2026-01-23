@@ -156,13 +156,26 @@ createApp({
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting)
+            if (entry.isIntersecting) {
               currentSectionNum.value = entry.target.getAttribute("data-num");
+              // Add class to trigger fade-in animations
+              entry.target.classList.add('is-visible');
+            }
           });
         },
-        { root: scrollContainer.value, threshold: 0.5 }
+        { root: scrollContainer.value, threshold: 0.4 } // Trigger when 40% of the section is visible
       );
       document.querySelectorAll(".section").forEach((s) => observer.observe(s));
+
+      // Calculate scrollbar width to prevent header overlap
+      const updateScrollbarWidth = () => {
+        if (scrollContainer.value) {
+          const sbWidth = scrollContainer.value.offsetWidth - scrollContainer.value.clientWidth;
+          document.documentElement.style.setProperty('--scrollbar-width', `${sbWidth}px`);
+        }
+      };
+      updateScrollbarWidth();
+      window.addEventListener('resize', updateScrollbarWidth);
     });
 
     return {
