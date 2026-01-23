@@ -1,4 +1,4 @@
-const { createApp, ref, onMounted } = Vue;
+const { createApp, ref, reactive, onMounted } = Vue;
 
 createApp({
   setup() {
@@ -12,6 +12,18 @@ createApp({
     const isAboutAtBottom = ref(false);
     const mobileMenuOpen = ref(false);
     const switchAudio = ref(null);
+
+    // Contact form state
+    const formData = reactive({
+      name: '',
+      email: '',
+      message: ''
+    });
+    const formLoading = ref(false);
+    const formStatus = reactive({
+      type: '',
+      message: ''
+    });
 
     // Lego brick overlays - varied sizes on a 12x10 grid
     // These are just the brick shapes (borders/studs), not image slices
@@ -152,6 +164,48 @@ createApp({
     const scrollToTop = () =>
       scrollContainer.value.scrollTo({ top: 0, behavior: "smooth" });
 
+    // Contact form submission via Formspree
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mkojrypq';
+
+    const submitForm = async () => {
+      formStatus.type = '';
+      formStatus.message = '';
+      formLoading.value = true;
+
+      try {
+        const response = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          formStatus.type = 'success';
+          formStatus.message = 'Message sent successfully! I\'ll get back to you soon.';
+          formData.name = '';
+          formData.email = '';
+          formData.message = '';
+        } else {
+          formStatus.type = 'error';
+          formStatus.message = data.errors?.[0]?.message || 'Failed to send message. Please try again.';
+        }
+      } catch (error) {
+        formStatus.type = 'error';
+        formStatus.message = 'Network error. Please check your connection and try again.';
+      } finally {
+        formLoading.value = false;
+      }
+    };
+
     onMounted(() => {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -199,6 +253,10 @@ createApp({
       scrollToTop,
       getTileStyle,
       brickCount,
+      formData,
+      formLoading,
+      formStatus,
+      submitForm,
     };
   },
 }).mount("#app");

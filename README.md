@@ -9,6 +9,7 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 ## Tech Stack
 
 - **Vue 3** - Reactive UI framework (via CDN)
+- **Formspree** - Contact form handling
 - **CSS3** - Custom styling with CSS variables for theming
 - **Font Awesome 6** - Icon library
 - **Devicon** - Technology stack icons
@@ -22,7 +23,7 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 - CSS-animated photo mosaic
 - Horizontal scrolling project cards
 - Responsive design
-- Contact form
+- Functional contact form via Formspree
 - Embedded CV/resume viewer
 
 ## Project Structure
@@ -31,6 +32,7 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 ├── index.html          # Main HTML file with Vue app
 ├── style.css           # All styles with CSS variables
 ├── script.js           # Vue 3 application logic
+├── .gitignore          # Git ignore rules
 ├── README.md           # This file
 ├── robots.txt          # SEO crawler directives
 ├── sitemap.xml         # SEO sitemap
@@ -72,6 +74,11 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 1. Clone or download this repository
 2. Open `index.html` in a web browser
 3. No build step required - all dependencies loaded via CDN
+
+The contact form uses [Formspree](https://formspree.io) for handling submissions. To use your own form:
+1. Create a free account at formspree.io
+2. Create a new form and copy the endpoint
+3. Update the `FORMSPREE_ENDPOINT` in `script.js`
 
 ## Browser Support
 
