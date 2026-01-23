@@ -265,6 +265,7 @@ body {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .section {
@@ -283,8 +284,11 @@ body {
 /* Initially hide content for all sections except the hero */
 .section:nth-child(n+2) > * {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease-out, transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translateY(25px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 /* When a section is visible, reveal its content */
@@ -293,10 +297,88 @@ body {
   transform: translateY(0);
 }
 
+/* Staggered animations for child elements */
+.section.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+.section.is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+.section.is-visible > *:nth-child(3) { transition-delay: 0.19s; }
+.section.is-visible > *:nth-child(4) { transition-delay: 0.26s; }
+
 /* Add a subtle stagger for the second column in split layouts */
 .grid-2.is-visible > div:nth-of-type(2),
 .split-layout.is-visible > .split-side:nth-of-type(2) {
-    transition-delay: 0.2s;
+  transition-delay: 0.1s;
+}
+
+/* Smooth fade for project cards */
+.project-grid .project-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
+  will-change: opacity, transform;
+}
+
+.section.is-visible .project-card:nth-child(1) { transition-delay: 0.08s; }
+.section.is-visible .project-card:nth-child(2) { transition-delay: 0.16s; }
+.section.is-visible .project-card:nth-child(3) { transition-delay: 0.24s; }
+.section.is-visible .project-card:nth-child(4) { transition-delay: 0.32s; }
+.section.is-visible .project-card:nth-child(5) { transition-delay: 0.4s; }
+.section.is-visible .project-card:nth-child(6) { transition-delay: 0.48s; }
+
+.section.is-visible .project-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth fade for icon grid items */
+.icon-grid i {
+  opacity: 0;
+  transform: scale(0.85) translateY(10px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.section.is-visible .icon-grid i:nth-child(1) { transition-delay: 0.05s; }
+.section.is-visible .icon-grid i:nth-child(2) { transition-delay: 0.1s; }
+.section.is-visible .icon-grid i:nth-child(3) { transition-delay: 0.15s; }
+.section.is-visible .icon-grid i:nth-child(4) { transition-delay: 0.2s; }
+.section.is-visible .icon-grid i:nth-child(5) { transition-delay: 0.25s; }
+.section.is-visible .icon-grid i:nth-child(6) { transition-delay: 0.3s; }
+.section.is-visible .icon-grid i:nth-child(7) { transition-delay: 0.35s; }
+.section.is-visible .icon-grid i:nth-child(8) { transition-delay: 0.4s; }
+.section.is-visible .icon-grid i:nth-child(9) { transition-delay: 0.45s; }
+.section.is-visible .icon-grid i:nth-child(10) { transition-delay: 0.5s; }
+
+.section.is-visible .icon-grid i {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Form elements fade in */
+.contact-form .form-group,
+.contact-form .form-row,
+.contact-form .submit-btn {
+  opacity: 0;
+  transform: translateY(15px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.section.is-visible .contact-form .form-row { transition-delay: 0.08s; }
+.section.is-visible .contact-form .form-group:nth-of-type(2) { transition-delay: 0.16s; }
+.section.is-visible .contact-form .submit-btn { transition-delay: 0.24s; }
+
+.section.is-visible .contact-form .form-group,
+.section.is-visible .contact-form .form-row,
+.section.is-visible .contact-form .submit-btn {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .grid-2 {
@@ -332,10 +414,10 @@ body {
 }
 
 .hero-logo {
-  width: 300px;
-  max-width: 80vw;
+  width: 240px;
+  max-width: 70vw;
   height: auto;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .hero-scroll-prompt {
@@ -385,6 +467,7 @@ h1 {
   padding: 0;
 }
 
+
 .animation-side {
   background: rgba(255, 255, 255, 0.02);
   overflow: hidden;
@@ -407,6 +490,7 @@ h1 {
   padding: 120px 8% 0;
   scrollbar-width: thin;
   position: relative;
+  background-color: inherit;
 }
 
 .text-side p {
@@ -926,15 +1010,23 @@ h1 {
 
 .scroll-up {
   right: 30px;
-  background-color: white;
-  color: black;
+  background-color: #1a1a1a;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
   opacity: 0;
   pointer-events: none;
+  transition: all 0.3s ease;
 }
 
 .scroll-up.visible {
   opacity: 1;
   pointer-events: auto;
+}
+
+.scroll-up:hover {
+  background-color: var(--color-accent);
+  color: #000000;
+  transform: translateY(-3px);
 }
 
 .bounce-anim {
@@ -953,6 +1045,15 @@ h1 {
 
   40% {
     transform: translateY(-10px);
+  }
+}
+
+@keyframes sendPulse {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
   }
 }
 
@@ -1249,46 +1350,86 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 0;
-    min-height: 100dvh;
-    height: auto;
-    overflow-y: auto;
-    scroll-snap-align: none;
-    padding-top: 80px;
-    padding-bottom: 100px;
-  }
-
-  .contact-split-side {
-    padding: 10px 20px;
-    height: auto;
-    flex-shrink: 0;
+    height: 100dvh;
+    padding: 0;
+    overflow: hidden;
   }
 
   .contact-split-side:first-child {
-    padding-top: 20px;
-    padding-bottom: 10px;
+    position: relative;
+    height: 35%;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .contact-split-side:first-child::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.4) 40%,
+      rgba(0, 0, 0, 0.8) 70%,
+      rgba(10, 10, 10, 1) 100%);
+    z-index: 1;
+  }
+
+  #contact .profile-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 0;
+    margin: 0;
+    filter: grayscale(100%) contrast(1.1);
+  }
+
+  #contact .contact-sidebar {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px 15px;
+    text-align: center;
+  }
+
+  #contact .contact-sidebar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.6) 60%,
+      transparent 100%);
+    z-index: -1;
+  }
+
+  #contact .contact-sidebar h2 {
+    display: none;
   }
 
   .contact-split-side:last-child {
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0 15px 80px;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 1) 0%, transparent 30px);
   }
 
   #contact .contact-form {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: auto;
     height: auto;
-  }
-
-  #contact .contact-form .form-group:last-of-type {
-    flex: 1;
-  }
-
-  #contact .contact-form textarea {
-    flex: 1;
-    min-height: 100px;
+    min-height: auto;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 15px;
+    background: transparent;
   }
 
   .hero-text {
@@ -1324,15 +1465,41 @@ h1 {
   }
 
   .animation-side {
-    height: 350px;
-    border-radius: 12px;
+    height: 50%;
+    border-radius: 0;
     margin-bottom: 0;
   }
 
+  .about-video {
+    object-fit: cover;
+  }
+
   .text-side {
-    padding: 30px 0 0;
-    height: calc(100vh - 410px);
+    padding: 20px 5% 0;
+    height: 50%;
     overflow-y: auto;
+    background-color: inherit;
+  }
+
+  /* About Me section - 50/50 split */
+  #about-me.split-layout {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  #about-me .split-side {
+    flex: 1;
+    min-height: 0;
+  }
+
+  #about-me .animation-side {
+    flex: 0 0 45%;
+  }
+
+  #about-me .text-side {
+    flex: 0 0 55%;
+    padding: 15px 5% 0;
   }
 
   .text-side p {
@@ -1346,9 +1513,9 @@ h1 {
   }
 
   .scroll-prompt {
-    height: 150px;
-    margin-top: -150px;
-    padding-bottom: 20px;
+    height: 120px;
+    margin-top: -120px;
+    padding-bottom: 15px;
     font-size: 1.8rem;
   }
   .reel-title {
@@ -1357,7 +1524,7 @@ h1 {
   }
 
   .icon-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
 
@@ -1386,68 +1553,109 @@ h1 {
     font-size: 0.9rem;
   }
 
-  .contact-sidebar {
-    margin-bottom: 0;
-    padding: 10px;
-  }
-
-  .contact-sidebar h2 {
-    font-size: 1.3rem;
-    margin-bottom: 5px;
-  }
-
-  .profile-img {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 8px;
-  }
-
-  .contact-sidebar p {
-    font-size: 0.85rem;
+  #contact .contact-sidebar p {
+    font-size: 0.95rem;
     margin: 5px 0;
+    color: #ffffff;
+    order: 2;
+    text-shadow:
+      0 0 8px rgba(0,0,0,1),
+      0 0 15px rgba(0,0,0,1),
+      0 0 25px rgba(0,0,0,0.9),
+      0 2px 4px rgba(0,0,0,1);
   }
 
-  .footer-socials {
-    gap: 10px;
-    margin-top: 8px;
+  #contact .footer-socials {
+    gap: 15px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 10;
+    order: 1;
   }
 
-  .footer-socials a {
-    font-size: 1.2rem;
-    padding: 6px;
+  #contact .footer-socials a {
+    font-size: 1.5rem;
+    padding: 10px;
+    color: #ffffff !important;
+    text-shadow:
+      0 0 8px rgba(0,0,0,1),
+      0 0 15px rgba(0,0,0,1);
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  #contact .footer-socials a:hover {
+    color: #81c784 !important;
+    text-shadow:
+      0 0 10px rgba(129, 199, 132, 0.6),
+      0 0 20px rgba(129, 199, 132, 0.4);
+    transform: scale(1.1);
   }
 
   #contact .copyright-container {
-    margin-top: 10px;
-    font-size: 0.8rem;
+    display: none;
   }
 
   .contact-form {
-    gap: 12px;
-    padding: 20px;
+    gap: 8px;
+    padding: 15px;
   }
 
   .form-row {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 8px;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+    margin-bottom: 3px;
   }
 
   .contact-form input,
   .contact-form textarea {
-    padding: 12px;
-    font-size: 1rem;
+    padding: 10px 12px;
+    font-size: 0.95rem;
   }
 
   .contact-form textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 60px;
   }
 
   .submit-btn {
-    padding: 16px;
-    font-size: 1rem;
+    padding: 12px 30px;
+    font-size: 0.85rem;
     font-weight: 700;
-    margin-top: 8px;
+    margin: 5px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+  }
+
+  .submit-btn .btn-text {
+    visibility: hidden;
+    font-size: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .submit-btn .btn-text i {
+    display: none;
+  }
+
+  .submit-btn::after {
+    content: "SEND";
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1;
   }
 
   .fab-btn {
@@ -1499,11 +1707,11 @@ h1 {
 
   .icon-grid {
     flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-content: space-evenly;
-    gap: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
     padding: 5px;
   }
 
@@ -1540,7 +1748,7 @@ h1 {
   }
 
   .icon-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .icon-grid i {

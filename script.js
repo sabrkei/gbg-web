@@ -158,12 +158,19 @@ createApp({
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               currentSectionNum.value = entry.target.getAttribute("data-num");
-              // Add class to trigger fade-in animations
-              entry.target.classList.add('is-visible');
+              // Add class to trigger fade-in animations with requestAnimationFrame for smoothness
+              requestAnimationFrame(() => {
+                entry.target.classList.add('is-visible');
+              });
+            } else {
+              // Remove class to reset animations when scrolling away
+              requestAnimationFrame(() => {
+                entry.target.classList.remove('is-visible');
+              });
             }
           });
         },
-        { root: scrollContainer.value, threshold: 0.4 } // Trigger when 40% of the section is visible
+        { root: scrollContainer.value, threshold: 0.2 } // Trigger when 20% of the section is visible
       );
       document.querySelectorAll(".section").forEach((s) => observer.observe(s));
 
@@ -176,6 +183,22 @@ createApp({
       };
       updateScrollbarWidth();
       window.addEventListener('resize', updateScrollbarWidth);
+
+      // Fix scroll trap in About section when using mandatory snap
+      if (aboutTextSide.value) {
+        aboutTextSide.value.addEventListener("wheel", (e) => {
+          const el = aboutTextSide.value;
+          const isAtBottom = el.scrollHeight - el.scrollTop <= el.clientHeight + 10;
+
+          if (isAtBottom && e.deltaY > 0) {
+            e.preventDefault();
+            scrollContainer.value.scrollBy({
+              top: window.innerHeight,
+              behavior: "smooth",
+            });
+          }
+        }, { passive: false });
+      }
     });
 
     return {
