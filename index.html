@@ -193,9 +193,9 @@
 
         <section id="about-me" class="section split-layout" data-num="05 / 06">
           <div class="split-side animation-side">
-            <div class="lego-photo-mosaic">
-              <div v-for="n in brickCount" :key="n" class="lego-tile" :style="getTileStyle(n)"></div>
-            </div>
+            <video autoplay muted loop playsinline class="about-video" aria-label="Family video">
+              <source src="videos/family.mp4" type="video/mp4">
+            </video>
           </div>
           <div class="split-side text-side" ref="aboutTextSide" @scroll="checkAboutScroll">
             <h2 class="reel-title">About Me</h2>

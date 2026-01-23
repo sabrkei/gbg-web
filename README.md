@@ -20,7 +20,7 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 - Full-viewport scroll-snap sections
 - Dark/Light theme toggle with CSS variables
 - Auto-hiding header on scroll with hover reveal
-- CSS-animated photo mosaic
+- Looping video in About section
 - Horizontal scrolling project cards
 - Responsive design
 - Functional contact form via Formspree
@@ -42,7 +42,6 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 │   ├── gbg-web.webp
 │   ├── profilephoto.webp
 │   ├── hero-poster.webp
-│   ├── familyphoto.webp
 │   ├── thedailygrind.webp
 │   ├── thedailygrindlogo.webp
 │   ├── unitedbysound.webp
@@ -51,7 +50,8 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 │   └── locksafe_cinema-1.webp
 │
 ├── videos/
-│   └── hero.mp4        # Hero section video
+│   ├── hero.mp4        # Hero section video
+│   └── family.mp4      # About section video
 │
 ├── audio/
 │   └── switch.mp3      # Theme toggle sound
@@ -66,7 +66,7 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 2. **Portfolio** - Personal projects showcase
 3. **Customer Projects** - Client work showcase
 4. **Skills** - Technical skillset icons + CV viewer
-5. **About Me** - Personal story with a CSS photo mosaic animation
+5. **About Me** - Personal story with looping family video
 6. **Contact** - Contact form and social links
 
 ## Getting Started

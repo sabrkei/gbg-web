@@ -25,60 +25,6 @@ createApp({
       message: ''
     });
 
-    // Lego brick overlays - varied sizes on a 12x10 grid
-    // These are just the brick shapes (borders/studs), not image slices
-    const legoBricks = [
-      // Row 0
-      { x: 0, y: 0, w: 3 }, { x: 3, y: 0, w: 2 }, { x: 5, y: 0, w: 4 }, { x: 9, y: 0, w: 3 },
-      // Row 1
-      { x: 0, y: 1, w: 2 }, { x: 2, y: 1, w: 4 }, { x: 6, y: 1, w: 3 }, { x: 9, y: 1, w: 3 },
-      // Row 2
-      { x: 0, y: 2, w: 4 }, { x: 4, y: 2, w: 2 }, { x: 6, y: 2, w: 4 }, { x: 10, y: 2, w: 2 },
-      // Row 3
-      { x: 0, y: 3, w: 3 }, { x: 3, y: 3, w: 3 }, { x: 6, y: 3, w: 2 }, { x: 8, y: 3, w: 4 },
-      // Row 4
-      { x: 0, y: 4, w: 2 }, { x: 2, y: 4, w: 4 }, { x: 6, y: 4, w: 3 }, { x: 9, y: 4, w: 3 },
-      // Row 5
-      { x: 0, y: 5, w: 4 }, { x: 4, y: 5, w: 3 }, { x: 7, y: 5, w: 2 }, { x: 9, y: 5, w: 3 },
-      // Row 6
-      { x: 0, y: 6, w: 3 }, { x: 3, y: 6, w: 2 }, { x: 5, y: 6, w: 4 }, { x: 9, y: 6, w: 3 },
-      // Row 7
-      { x: 0, y: 7, w: 2 }, { x: 2, y: 7, w: 3 }, { x: 5, y: 7, w: 3 }, { x: 8, y: 7, w: 4 },
-      // Row 8
-      { x: 0, y: 8, w: 4 }, { x: 4, y: 8, w: 2 }, { x: 6, y: 8, w: 3 }, { x: 9, y: 8, w: 3 },
-      // Row 9
-      { x: 0, y: 9, w: 3 }, { x: 3, y: 9, w: 4 }, { x: 7, y: 9, w: 2 }, { x: 9, y: 9, w: 3 },
-    ];
-
-    const gridCols = 12;
-    const gridRows = 10;
-
-    const getTileStyle = (index) => {
-      const brick = legoBricks[index - 1];
-      if (!brick) return { display: 'none' };
-
-      // Build from bottom-up, left-to-right
-      const buildOrder = (gridRows - 1 - brick.y) * gridCols + brick.x;
-      const delay = buildOrder * 0.06;
-
-      // Position and size
-      const left = (brick.x / gridCols) * 100;
-      const top = (brick.y / gridRows) * 100;
-      const width = (brick.w / gridCols) * 100;
-      const height = (1 / gridRows) * 100;
-
-      return {
-        left: `${left}%`,
-        top: `${top}%`,
-        width: `${width}%`,
-        height: `${height}%`,
-        '--stud-count': brick.w,
-        animationDelay: `${delay}s`,
-      };
-    };
-
-    const brickCount = ref(legoBricks.length);
-
     const projects = ref([
       {
         title: "The Daily Grind",
@@ -251,8 +197,6 @@ createApp({
       handleAboutIconClick,
       scrollToSection,
       scrollToTop,
-      getTileStyle,
-      brickCount,
       formData,
       formLoading,
       formStatus,
