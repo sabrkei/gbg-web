@@ -34,19 +34,28 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 ├── README.md           # This file
 ├── robots.txt          # SEO crawler directives
 ├── sitemap.xml         # SEO sitemap
+├── CNAME               # GitHub Pages custom domain
 │
-├── Assets
-│   ├── gbg-web.png             # Site logo
-│   ├── profilephoto.png        # Profile image
-│   ├── hero-bg.mp4             # Hero section video
-│   ├── SAKCV.pdf               # Resume/CV document
-│   │
-│   └── Project Images
-│       ├── thedailygrindlogo.webp
-│       ├── thedailygrind.png
-│       ├── unitedbysound.png
-│       ├── footballstatshublogo.png
-│       └── nyds.png
+├── images/             # All image assets (WebP format)
+│   ├── gbg-web.webp
+│   ├── profilephoto.webp
+│   ├── hero-poster.webp
+│   ├── familyphoto.webp
+│   ├── thedailygrind.webp
+│   ├── thedailygrindlogo.webp
+│   ├── unitedbysound.webp
+│   ├── footballstatshublogo.webp
+│   ├── nyds.webp
+│   └── locksafe_cinema-1.webp
+│
+├── videos/
+│   └── hero.mp4        # Hero section video
+│
+├── audio/
+│   └── switch.mp3      # Theme toggle sound
+│
+└── assets/
+    └── SAKCV.pdf       # Resume/CV document
 ```
 
 ## Sections
@@ -79,11 +88,17 @@ Edit CSS variables in `style.css`:
 
 ```css
 :root {
-  --color-accent: #90ee90;  /* Main accent color */
-  --bg-dark: #000000;       /* Dark theme background */
-  --bg-light: #1a2e1a;      /* Light theme background */
-  --card-bg: #111111;       /* Card backgrounds */
-  --text-dim: #aaa;         /* Dimmed text color */
+  --color-accent: #0056b3;  /* Royal Blue accent (dark theme) */
+  --bg-dark: #0f172a;       /* Deep Slate background */
+  --bg-light: #e2e8f0;      /* Slate 200 background */
+  --card-bg: #ffffff;       /* Card backgrounds */
+  --text-dim: #4b5563;      /* Dimmed text color */
+}
+
+[data-theme="light"] {
+  --color-accent: #81c784;  /* Soft Green accent (light theme) */
+  --bg-light: #000000;      /* Black background */
+  --card-bg: #1a221e;       /* Dark green-grey cards */
 }
 ```
 

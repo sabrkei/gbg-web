@@ -24,10 +24,6 @@ html {
   height: 100%;
   background-color: var(--bg-current);
   transition: background-color 1.2s ease-in-out;
-}
-
-/* Custom Scrollbar */
-html {
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) var(--bg-current);
 }
@@ -429,10 +425,6 @@ h1 {
   will-change: transform, opacity; /* Optimizes animation performance */
 }
 
-/* Circular studs on top of each brick - birds eye view */
-.lego-tile::after {
-  display: none;
-}
 
 /* Stop-motion snap-in, borders fade to reveal photo, then shrink together */
 @keyframes puzzleSnapIn {
@@ -599,8 +591,6 @@ h1 {
 /* SKILLS/CONTACT */
 .icon-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
   grid-template-columns: repeat(3, 1fr);
   gap: 35px;
   justify-items: center;
@@ -612,7 +602,6 @@ h1 {
 }
 
 .icon-grid i {
-  font-size: 3.5rem;
   font-size: 6rem;
 }
 
@@ -969,7 +958,6 @@ h1 {
   top: 70px;
   left: 0;
   right: 0;
-  width: 100%;
   width: calc(100% - var(--scrollbar-width, 0px));
   background: rgba(0, 0, 0, 0.98);
   backdrop-filter: blur(10px);
