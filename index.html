@@ -66,19 +66,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://unpkg.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <!-- Preload LCP Image for Mobile Speed -->
     <link rel="preload" as="image" href="images/hero-poster.webp" fetchpriority="high">
 
-    <!-- Optimize Google Fonts: Only load used weights & load async -->
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet"></noscript>
+    <!-- Optimize Google Fonts: Only load used weights -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
     <!-- Defer Font Awesome to prevent render blocking -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" media="print" onload="this.media='all'">
     <!-- Defer Vue and Main Script -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
     <script src="script.js" defer></script>
@@ -124,7 +122,7 @@
             <div class="video-overlay"></div>
           </div>
           <div class="hero-text">
-            <img src="images/gbg-web.webp" alt="GBG-Web Logo" class="hero-logo" width="300" height="117">
+            <img src="images/gbg-web.webp" alt="GBG-Web Logo" class="hero-logo" width="300" height="117" fetchpriority="high">
             <h1>Designer & Developer <br><span class="sub-heading">focused on modern web.</span></h1>
           </div>
           <div class="hero-scroll-prompt" @click="scrollToSection('portfolio')">
@@ -165,25 +163,25 @@
           <div>
             <h2 class="reel-title">Technical Skillset / Stack</h2>
             <div class="icon-grid">
-              <i class="fab fa-js icon-js"></i>
-              <i class="fab fa-vuejs icon-vue"></i>
-              <i class="fab fa-react icon-react"></i>
-              <i class="fab fa-node-js icon-node"></i>
-              <i class="fab fa-html5 icon-html"></i>
-              <i class="fab fa-css3-alt icon-css"></i>
-              <i class="fa-brands fa-wordpress"></i>
-              <i class="fa-brands fa-sass"></i>
-              <i class="devicon-typescript-plain colored"></i>
-              <i class="bi bi-claude"></i>
-
+              <i class="fab fa-js icon-js" aria-label="JavaScript"></i>
+              <i class="fab fa-vuejs icon-vue" aria-label="Vue.js"></i>
+              <i class="fab fa-react icon-react" aria-label="React"></i>
+              <i class="fab fa-node-js icon-node" aria-label="Node.js"></i>
+              <i class="fab fa-html5 icon-html" aria-label="HTML5"></i>
+              <i class="fab fa-css3-alt icon-css" aria-label="CSS3"></i>
+              <i class="fab fa-wordpress icon-wordpress" aria-label="WordPress"></i>
+              <i class="fab fa-sass icon-sass" aria-label="Sass"></i>
+              <i class="fab fa-git-alt icon-git" aria-label="Git"></i>
             </div>
           </div>
           <div class="cv-container">
             <h2 class="reel-title">CV</h2>
             <div class="cv-wrapper">
-              <iframe src="https://docs.google.com/gview?url=https://gbg-web.com/assets/SAKCV.pdf&embedded=true" class="cv-iframe" title="CV Viewer" loading="lazy"></iframe>
+              <object data="assets/SAKCV.pdf" type="application/pdf" class="cv-iframe" aria-label="CV Document">
+                <p>Unable to display PDF. <a href="assets/SAKCV.pdf" target="_blank" rel="noopener">Download CV</a></p>
+              </object>
               <div class="cv-controls">
-                <a href="assets/SAKCV.pdf" target="_blank" title="Open Fullscreen" aria-label="Open CV Fullscreen"><i class="fas fa-expand"></i></a>
+                <a href="assets/SAKCV.pdf" target="_blank" rel="noopener" title="Open Fullscreen" aria-label="Open CV Fullscreen"><i class="fas fa-expand"></i></a>
                 <a href="assets/SAKCV.pdf" download title="Download CV" aria-label="Download CV"><i class="fas fa-download"></i></a>
               </div>
             </div>
@@ -277,8 +275,6 @@
               </div>
               <div class="copyright-container">gbg-Web © 2026</div>
             </div>
-            
-              
           </div>
           <div class="contact-split-side">
             <form class="contact-form" @submit.prevent="submitForm" aria-label="Contact Form">

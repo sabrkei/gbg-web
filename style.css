@@ -858,6 +858,18 @@ h1 {
   color: #1572b6;
 }
 
+.icon-wordpress {
+  color: #21759b;
+}
+
+.icon-sass {
+  color: #cc6699;
+}
+
+.icon-git {
+  color: #f05032;
+}
+
 .cv-wrapper {
   position: relative;
   overflow: hidden;
