@@ -1246,14 +1246,49 @@ h1 {
   }
 
   #contact.split-layout {
+    display: flex;
+    flex-direction: column;
     gap: 0;
-    padding-bottom: 180px; /* Ensure form button clears the FABs */
     min-height: 100dvh;
+    height: auto;
+    overflow-y: auto;
+    scroll-snap-align: none;
+    padding-top: 80px;
+    padding-bottom: 100px;
   }
 
   .contact-split-side {
     padding: 10px 20px;
     height: auto;
+    flex-shrink: 0;
+  }
+
+  .contact-split-side:first-child {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  .contact-split-side:last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #contact .contact-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    height: auto;
+  }
+
+  #contact .contact-form .form-group:last-of-type {
+    flex: 1;
+  }
+
+  #contact .contact-form textarea {
+    flex: 1;
+    min-height: 100px;
   }
 
   .hero-text {
@@ -1353,60 +1388,66 @@ h1 {
 
   .contact-sidebar {
     margin-bottom: 0;
+    padding: 10px;
+  }
+
+  .contact-sidebar h2 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
   }
 
   .profile-img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 10px;
-  }
-
-  .contact-sidebar h3 {
-    margin-bottom: 10px;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 8px;
   }
 
   .contact-sidebar p {
-    font-size: 0.9rem;
-    margin: 8px 0;
+    font-size: 0.85rem;
+    margin: 5px 0;
   }
 
   .footer-socials {
-    gap: 12px;
-    margin-top: 12px;
+    gap: 10px;
+    margin-top: 8px;
   }
 
   .footer-socials a {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    padding: 6px;
+  }
+
+  #contact .copyright-container {
+    margin-top: 10px;
+    font-size: 0.8rem;
   }
 
   .contact-form {
-    gap: 8px;
+    gap: 12px;
+    padding: 20px;
   }
 
   .form-row {
     grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .contact-form {
-    padding: 15px;
+    gap: 12px;
   }
 
   .contact-form input,
   .contact-form textarea {
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
   }
 
   .contact-form textarea {
     resize: vertical;
-    max-height: 150px;
+    min-height: 80px;
   }
 
   .submit-btn {
-    padding: 14px;
-    font-size: 0.95rem;
+    padding: 16px;
+    font-size: 1rem;
     font-weight: 700;
+    margin-top: 8px;
   }
 
   .fab-btn {
