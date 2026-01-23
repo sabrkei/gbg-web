@@ -165,7 +165,7 @@ createApp({
       scrollContainer.value.scrollTo({ top: 0, behavior: "smooth" });
 
     // Contact form submission via Formspree
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mkojrypq';
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjgywnje';
 
     const submitForm = async () => {
       formStatus.type = '';
