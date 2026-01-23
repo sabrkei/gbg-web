@@ -53,7 +53,7 @@ body {
 
 /* Light theme - High Contrast */
 [data-theme="light"] {
-  --bg-light: #2b310a00;      /* Default to first color */
+  --bg-light: #000000;      /* Black to match video & prevent white bars */
   --bg-current: var(--bg-light);
   --text-main: #ffffff;     /* White font */
   --text-dim: #e0e0e0;
@@ -71,7 +71,7 @@ body {
 
 /* Specific section backgrounds for Light Theme using requested palette */
 [data-theme="light"] .section:nth-child(1) {
-  background-color: #2b310a00;
+  background-color: #000000;
 }
 [data-theme="light"] .section:nth-child(2) {
   background-color: #4b5320;
