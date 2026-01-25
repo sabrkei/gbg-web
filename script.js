@@ -126,6 +126,11 @@ createApp({
             requestAnimationFrame(() => {
               if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible', 'was-visible');
+                // Reset About Me scroll position when section becomes visible
+                if (entry.target.id === 'about-me' && aboutTextSide.value) {
+                  aboutTextSide.value.scrollTop = 0;
+                  isAboutAtBottom.value = false;
+                }
               } else {
                 entry.target.classList.remove('is-visible');
               }
