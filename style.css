@@ -1564,8 +1564,6 @@ h1 {
 
   .icon-grid span { font-size: 4rem; }
 
-  .cv-desktop { display: none; }
-  .cv-mobile { display: block; }
   .cv-wrapper { border-radius: 8px; margin-bottom: 20px; }
   .cv-mobile-card { padding: 30px 15px; }
   .cv-mobile-card > span { font-size: 3rem; }
@@ -1685,13 +1683,6 @@ h1 {
     padding: 5px;
   }
 
-  .cv-wrapper {
-    height: auto;
-    margin-bottom: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
   .cv-mobile-card {
     background-color: var(--card-bg);
   }
@@ -1700,8 +1691,6 @@ h1 {
   .about-video {
     filter: none !important;
   }
-
-  .cv-iframe { height: auto; }
 }
 
 /* ==========================================================================
