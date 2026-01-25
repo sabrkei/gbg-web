@@ -353,7 +353,7 @@ select {
 /* Performance optimization for below-fold sections */
 .section:nth-child(n+2) {
   content-visibility: auto;
-  contain-intrinsic-size: 100dvh;
+  contain-intrinsic-size: 1px 100dvh; /* Fix for 0 height issue in some browsers */
 }
 
 .section:nth-child(1) { background-color: var(--bg-current); }
@@ -361,6 +361,12 @@ select {
 .section:nth-child(3) { background-color: #0d1420; }
 .section:nth-child(4) { background-color: var(--text-side-bg); }
 .section:nth-child(5) { background-color: #0d1420; }
+
+/* Rendering Performance */
+.section {
+  contain: content;
+  will-change: transform; /* Hint for scroll snap performance */
+}
 
 /* ==========================================================================
    SECTION ANIMATIONS
@@ -667,8 +673,8 @@ h1 {
   font-weight: 600;
   letter-spacing: 1px;
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.6); /* Higher contrast background */
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 20px;
   transition: background 0.3s ease, border-color 0.3s ease;
 }
