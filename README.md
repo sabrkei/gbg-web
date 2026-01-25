@@ -32,7 +32,7 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 - **LCP Optimized**: Hero poster preloaded with `fetchpriority="high"`
 - **Lazy Loading**: Below-fold images use `loading="lazy"` and `decoding="async"`
 - **Font Loading**: Google Fonts loaded asynchronously with print media swap
-- **No Third-Party Cookies**: Native PDF embed instead of Google Docs viewer
+- **PDF Compatibility**: Google Docs Viewer for consistent mobile rendering
 - **Minimal Dependencies**: Only essential external resources
 - **WebP Images**: All images in modern WebP format
 - **Deferred Scripts**: Vue and app scripts use `defer` attribute
