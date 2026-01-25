@@ -12,6 +12,8 @@ createApp({
     // DOM Refs
     const scrollContainer = ref(null);
     const aboutTextSide = ref(null);
+    const heroVideo = ref(null);
+    const aboutVideo = ref(null);
 
     // Form State
     const formData = reactive({ name: '', email: '', message: '' });
@@ -165,6 +167,20 @@ createApp({
           }
         }, { passive: false });
       }
+
+      // Performance: Only load videos on desktop/tablet to save mobile bandwidth
+      // This fixes "Enormous network payloads"
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        if (heroVideo.value) {
+          heroVideo.value.src = "videos/hero.mp4";
+          heroVideo.value.load();
+        }
+        // Lazy load about video
+        if (aboutVideo.value) {
+          aboutVideo.value.src = "videos/family.mp4";
+          // Don't call load() immediately, let it load when needed or browser decides
+        }
+      }
     });
 
     return {
@@ -175,6 +191,8 @@ createApp({
       mobileMenuOpen,
       scrollContainer,
       aboutTextSide,
+      heroVideo,
+      aboutVideo,
       projects,
       customerProjects,
       formData,
