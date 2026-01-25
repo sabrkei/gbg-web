@@ -1035,7 +1035,7 @@ h1 {
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #8a8a8a;
+  color: #a0a0a0;
   opacity: 1;
 }
 
@@ -1350,6 +1350,11 @@ h1 {
   .main-header { padding: 10px 15px; }
   .site-logo { height: 45px; }
   .right-group { gap: 8px; }
+
+  /* Performance: Disable heavy blur effects on mobile */
+  .main-header, .mobile-nav {
+    backdrop-filter: none !important;
+  }
 
   .section {
     padding: 0 5%;
