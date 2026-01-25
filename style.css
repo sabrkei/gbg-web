@@ -177,7 +177,7 @@ select {
 [data-theme="dark"] .hero-video,
 [data-theme="dark"] .hero-logo,
 [data-theme="dark"] dotlottie-wc {
-  filter: grayscale(40%) contrast(1.1);
+  filter: grayscale(100%) !important;
 }
 
 /* Keep family/about video in full color */
@@ -1327,6 +1327,11 @@ h1 {
    RESPONSIVE: MOBILE (480px and below)
    ========================================================================== */
 @media (max-width: 480px) {
+  /* Black background for safe areas (status bar + navigation bar) */
+  html {
+    background-color: #000000;
+  }
+
   body { overflow-x: hidden; }
   .main-header { padding: 10px 15px; }
   .site-logo { height: 45px; }
@@ -1359,6 +1364,7 @@ h1 {
     width: 100%;
     display: flex;
     justify-content: center;
+    bottom: 80px;
   }
 
   .projects-split {
@@ -1559,7 +1565,7 @@ h1 {
   .icon-grid span { font-size: 4rem; }
 
   .cv-desktop { display: none; }
-  .cv-mobile { display: none; }
+  .cv-mobile { display: block; }
   .cv-wrapper { border-radius: 8px; margin-bottom: 20px; }
   .cv-mobile-card { padding: 30px 15px; }
   .cv-mobile-card > span { font-size: 3rem; }
