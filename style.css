@@ -684,6 +684,8 @@ h1 {
   position: relative;
   height: 100%;
   background-color: var(--text-side-bg);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
 }
 
 .text-side p {
@@ -692,7 +694,7 @@ h1 {
 }
 
 .text-side p:last-of-type {
-  padding-bottom: 180px;
+  padding-bottom: 80px;
 }
 
 .text-side a {
@@ -1233,7 +1235,7 @@ h1 {
     position: relative;
   }
 
-  .text-side p:last-of-type { padding-bottom: 120px; }
+  .text-side p:last-of-type { padding-bottom: 80px; }
 
   .icon-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1512,12 +1514,10 @@ h1 {
     font-size: 0.95rem;
   }
 
-  .text-side p:last-of-type { padding-bottom: 180px; }
+  .text-side p:last-of-type { padding-bottom: 80px; }
 
   .scroll-prompt {
-    height: 150px;
-    margin-top: -150px;
-    padding-bottom: 60px;
+    bottom: 30px;
     font-size: 1.8rem;
   }
 
@@ -1530,13 +1530,6 @@ h1 {
   .section:nth-child(4),
   .section:nth-child(5) {
     background-color: #000000 !important;
-  }
-
-  .scroll-prompt {
-    background: linear-gradient(to bottom,
-      transparent 0%,
-      #000000 60%,
-      #000000 100%);
   }
 
   .reel-title { font-size: 1.3rem; margin-bottom: 12px; }
