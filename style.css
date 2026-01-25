@@ -1011,13 +1011,14 @@ h1 {
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  background: var(--input-bg);
-  border: 2px solid var(--border-color);
-  padding: 16px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 0;
   color: var(--text-main);
-  border-radius: 10px;
+  border-radius: 0;
   font-size: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: border-color 0.3s ease;
 }
 
 .contact-form input::placeholder,
@@ -1028,15 +1029,15 @@ h1 {
 
 .contact-form input:hover,
 .contact-form textarea:hover {
-  border-color: #555;
+  border-color: var(--text-dim);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px rgba(129, 199, 132, 0.2);
+  box-shadow: none;
   outline: none;
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: transparent;
 }
 
 .contact-form textarea {
@@ -1046,20 +1047,21 @@ h1 {
 
 #contact .contact-form input,
 #contact .contact-form textarea {
-  background-color: #1a1a1a;
-  border-color: #333;
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
 
 #contact .contact-form input:hover,
 #contact .contact-form textarea:hover {
-  border-color: #444;
-  background-color: #1f1f1f;
+  border-color: rgba(255, 255, 255, 0.6);
+  background-color: transparent;
 }
 
 #contact .contact-form input:focus,
 #contact .contact-form textarea:focus {
-  background-color: #1f1f1f;
+  background-color: transparent;
+  border-color: var(--color-accent);
 }
 
 .submit-btn {
@@ -1611,7 +1613,7 @@ h1 {
 
   .contact-form input,
   .contact-form textarea {
-    padding: 10px 12px;
+    padding: 10px 0;
     font-size: 0.95rem;
   }
 
