@@ -2,29 +2,24 @@ const { createApp, ref, reactive, onMounted } = Vue;
 
 createApp({
   setup() {
-    const activeTheme = ref("light");
-    const currentSectionNum = ref("01 / 06");
+    // UI State
     const isHeaderHidden = ref(false);
     const isHeaderForced = ref(false);
     const isScrollUpVisible = ref(false);
-    const scrollContainer = ref(null);
-    const aboutTextSide = ref(null);
     const isAboutAtBottom = ref(false);
     const mobileMenuOpen = ref(false);
-    const switchAudio = ref(null);
 
-    // Contact form state
-    const formData = reactive({
-      name: '',
-      email: '',
-      message: ''
-    });
+    // DOM Refs
+    const scrollContainer = ref(null);
+    const aboutTextSide = ref(null);
+
+    // Form State
+    const formData = reactive({ name: '', email: '', message: '' });
     const formLoading = ref(false);
-    const formStatus = reactive({
-      type: '',
-      message: ''
-    });
+    const formStatus = reactive({ type: '', message: '' });
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjgywnje';
 
+    // Project Data
     const projects = ref([
       {
         title: "The Daily Grind",
@@ -49,70 +44,50 @@ createApp({
     const customerProjects = ref([
       {
         title: "NYDS",
-        description:
-          "nydancespectacular.com - Dance event in Clearwater, Florida",
+        description: "nydancespectacular.com - Dance event in Clearwater, Florida",
         image: "images/nyds.webp",
         link: "https://nydancespectacular.com",
-      },
-      {
-        title: "Locksafe",
-        description:
-          "locksafe.se - Security solutions provider in Sweden",
-        image: "images/locksafe_cinema-1.webp",
-        link: "https://locksafe.se",
-      },
+      }
     ]);
 
-    const toggleTheme = () => {
-      if (switchAudio.value) {
-        switchAudio.value.currentTime = 0;
-        switchAudio.value.play().catch(() => {});
-      }
-      activeTheme.value = activeTheme.value === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", activeTheme.value);
-    };
-
+    // Scroll Handling
     let ticking = false;
     const handleScroll = (e) => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const top = e.target.scrollTop;
-          isHeaderHidden.value = top > 100;
-          isScrollUpVisible.value = top > 500;
-          ticking = false;
-        });
-        ticking = true;
-      }
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const top = e.target.scrollTop;
+        isHeaderHidden.value = top > 100;
+        isScrollUpVisible.value = top > 500;
+        ticking = false;
+      });
     };
 
     const checkAboutScroll = (e) => {
       const el = e.target;
-      isAboutAtBottom.value =
-        el.scrollHeight - el.scrollTop <= el.clientHeight + 40;
+      isAboutAtBottom.value = el.scrollHeight - el.scrollTop <= el.clientHeight + 40;
     };
 
     const handleAboutIconClick = () => {
-      if (isAboutAtBottom.value)
-        aboutTextSide.value.scrollTo({ top: 0, behavior: "smooth" });
-      else aboutTextSide.value.scrollBy({ top: 350, behavior: "smooth" });
+      if (isAboutAtBottom.value) {
+        aboutTextSide.value.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        aboutTextSide.value.scrollBy({ top: 350, behavior: 'smooth' });
+      }
     };
 
     const scrollToSection = (id) => {
       const el = document.getElementById(id);
       if (el && scrollContainer.value) {
-        scrollContainer.value.scrollTo({
-          top: el.offsetTop,
-          behavior: "smooth",
-        });
+        scrollContainer.value.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
       }
     };
 
-    const scrollToTop = () =>
-      scrollContainer.value.scrollTo({ top: 0, behavior: "smooth" });
+    const scrollToTop = () => {
+      scrollContainer.value.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
-    // Contact form submission via Formspree
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjgywnje';
-
+    // Form Submission
     const submitForm = async () => {
       formStatus.type = '';
       formStatus.message = '';
@@ -121,30 +96,20 @@ createApp({
       try {
         const response = await fetch(FORMSPREE_ENDPOINT, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            message: formData.message
-          })
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(formData)
         });
-
         const data = await response.json();
 
         if (response.ok) {
           formStatus.type = 'success';
-          formStatus.message = 'Message sent successfully! I\'ll get back to you soon.';
-          formData.name = '';
-          formData.email = '';
-          formData.message = '';
+          formStatus.message = "Message sent successfully! I'll get back to you soon.";
+          Object.assign(formData, { name: '', email: '', message: '' });
         } else {
           formStatus.type = 'error';
           formStatus.message = data.errors?.[0]?.message || 'Failed to send message. Please try again.';
         }
-      } catch (error) {
+      } catch {
         formStatus.type = 'error';
         formStatus.message = 'Network error. Please check your connection and try again.';
       } finally {
@@ -152,100 +117,70 @@ createApp({
       }
     };
 
+    // Initialize
     onMounted(() => {
+      // Section visibility observer
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              currentSectionNum.value = entry.target.getAttribute("data-num");
-              // Add class to trigger fade-in animations with requestAnimationFrame for smoothness
-              requestAnimationFrame(() => {
-                entry.target.classList.add('is-visible');
-              });
-            } else {
-              // Remove class to reset animations when scrolling away
-              requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible', 'was-visible');
+              } else {
                 entry.target.classList.remove('is-visible');
-              });
-            }
+              }
+            });
           });
         },
-        { root: scrollContainer.value, threshold: 0.2 } // Trigger when 20% of the section is visible
+        { root: scrollContainer.value, threshold: 0.5 }
       );
-      document.querySelectorAll(".section").forEach((s) => observer.observe(s));
+      document.querySelectorAll('.section').forEach((s) => observer.observe(s));
 
-      // Calculate scrollbar width to prevent header overlap
+      // Scrollbar width calculation
       const updateScrollbarWidth = () => {
         if (scrollContainer.value) {
-          const sbWidth = scrollContainer.value.offsetWidth - scrollContainer.value.clientWidth;
-          document.documentElement.style.setProperty('--scrollbar-width', `${sbWidth}px`);
+          const width = scrollContainer.value.offsetWidth - scrollContainer.value.clientWidth;
+          document.documentElement.style.setProperty('--scrollbar-width', `${width}px`);
         }
       };
       updateScrollbarWidth();
       window.addEventListener('resize', updateScrollbarWidth);
 
-      // Fix scroll trap in About section when using mandatory snap
+      // About section wheel navigation
       if (aboutTextSide.value) {
-        aboutTextSide.value.addEventListener("wheel", (e) => {
+        aboutTextSide.value.addEventListener('wheel', (e) => {
           const el = aboutTextSide.value;
+          const isAtTop = el.scrollTop <= 5;
           const isAtBottom = el.scrollHeight - el.scrollTop <= el.clientHeight + 10;
 
+          if (isAtTop && e.deltaY < 0) return;
           if (isAtBottom && e.deltaY > 0) {
             e.preventDefault();
-            scrollContainer.value.scrollBy({
-              top: window.innerHeight,
-              behavior: "smooth",
-            });
+            scrollContainer.value.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
           }
         }, { passive: false });
-      }
-
-      // 3D Tilt Effect for Project Cards (Desktop only)
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      if (!isTouchDevice) {
-        document.querySelectorAll('.project-card').forEach(card => {
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-          });
-
-          card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-          });
-        });
       }
     });
 
     return {
-      activeTheme,
-      currentSectionNum,
       isHeaderHidden,
       isHeaderForced,
       isScrollUpVisible,
-      scrollContainer,
-      aboutTextSide,
       isAboutAtBottom,
       mobileMenuOpen,
-      switchAudio,
+      scrollContainer,
+      aboutTextSide,
       projects,
       customerProjects,
-      toggleTheme,
+      formData,
+      formLoading,
+      formStatus,
       handleScroll,
       checkAboutScroll,
       handleAboutIconClick,
       scrollToSection,
       scrollToTop,
-      formData,
-      formLoading,
-      formStatus,
       submitForm,
     };
   },
-}).mount("#app");
+}).mount('#app');
