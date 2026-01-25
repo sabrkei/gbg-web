@@ -14,6 +14,10 @@
   <link rel="canonical" href="https://gbg-web.com">
   <link rel="icon" type="image/webp" href="images/gbg-web.webp">
 
+  <!-- Security & Best Practices -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https://gbg-web.com; frame-src 'self' https://docs.google.com; connect-src 'self' https://formspree.io; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gbg-web.com">
@@ -68,12 +72,14 @@
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://docs.google.com">
   <link rel="preload" as="image" href="images/hero-poster.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="images/gbg-web.webp">
   <link rel="preload" as="style" href="style.css">
 
   <!-- Fonts & Icons (Non-blocking) -->
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
   <!-- Styles & Scripts -->
   <link rel="stylesheet" href="style.css">
@@ -116,8 +122,9 @@
       <!-- Hero Section -->
       <section id="hero" class="section" aria-labelledby="hero-heading">
         <div class="hero-video-container">
-          <!-- Video source injected via JS to save bandwidth on mobile -->
-          <video ref="heroVideo" autoplay muted loop playsinline class="hero-video" poster="images/hero-poster.webp" width="1920" height="1080" aria-hidden="true"></video>
+          <video autoplay muted loop playsinline preload="metadata" class="hero-video" poster="images/hero-poster.webp" width="1920" height="1080" aria-hidden="true">
+            <source src="videos/hero.mp4" type="video/mp4">
+          </video>
           <div class="video-overlay" aria-hidden="true"></div>
         </div>
         <div class="hero-text">
@@ -165,7 +172,7 @@
         <h2 id="skills-heading" class="sr-only">Skills and CV</h2>
         <div>
           <h3 class="reel-title">Technical Skillset / Stack</h3>
-          <div class="icon-grid" role="group" aria-label="Technical skills">
+          <div class="icon-grid" role="list" aria-label="Technical skills">
             <span class="fab fa-js icon-js" role="img" aria-label="JavaScript"></span>
             <span class="fab fa-vuejs icon-vue" role="img" aria-label="Vue.js"></span>
             <span class="fab fa-react icon-react" role="img" aria-label="React"></span>
@@ -192,8 +199,9 @@
       <!-- About Section -->
       <section id="about-me" class="section split-layout" aria-labelledby="about-heading">
         <div class="split-side animation-side">
-          <!-- Video source injected via JS -->
-          <video ref="aboutVideo" autoplay muted loop playsinline class="about-video" poster="images/gbg-web.webp" aria-hidden="true"></video>
+          <video autoplay muted loop playsinline preload="none" class="about-video" aria-hidden="true">
+            <source src="videos/family.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="split-side text-side" ref="aboutTextSide" @scroll="checkAboutScroll">
           <h2 id="about-heading" class="reel-title">About Me</h2>

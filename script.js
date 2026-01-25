@@ -175,11 +175,12 @@ createApp({
           heroVideo.value.src = "videos/hero.mp4";
           heroVideo.value.load();
         }
-        // Lazy load about video
-        if (aboutVideo.value) {
-          aboutVideo.value.src = "videos/family.mp4";
-          // Don't call load() immediately, let it load when needed or browser decides
-        }
+      }
+
+      // About video: Load on all devices (per user request)
+      if (aboutVideo.value) {
+        aboutVideo.value.src = "videos/family.mp4";
+        // Allow browser to manage loading priority
       }
     });
 
