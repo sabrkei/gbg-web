@@ -1,21 +1,8 @@
 /* ==========================================================================
-   GBG-WEB - Main Stylesheet
+   GBG-WEB - Main Stylesheet (Optimized)
+   Performance: content-visibility, contain, reduced repaints
+   Accessibility: WCAG 2.1 AA compliant contrast, focus states
    ========================================================================== */
-
-/* ==========================================================================
-   FONT-DISPLAY OVERRIDE FOR EXTERNAL FONTS
-   ========================================================================== */
-@font-face {
-  font-family: 'Font Awesome 6 Brands';
-  font-display: swap;
-  src: local('Font Awesome 6 Brands');
-}
-
-@font-face {
-  font-family: 'Font Awesome 6 Free';
-  font-display: swap;
-  src: local('Font Awesome 6 Free');
-}
 
 /* ==========================================================================
    CSS VARIABLES
@@ -33,6 +20,8 @@
   --header-bg: rgba(255, 255, 255, 0.0);
   --btn-text: #ffffff;
   --input-bg: #ffffff;
+  --focus-ring: 3px solid var(--color-accent);
+  --focus-offset: 2px;
 }
 
 /* ==========================================================================
@@ -94,9 +83,36 @@ select {
 /* ==========================================================================
    ACCESSIBILITY
    ========================================================================== */
+/* Skip Link - visible on focus for keyboard users */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-accent);
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 0 0 8px 8px;
+  font-weight: 700;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
 :focus-visible {
-  outline: 3px solid var(--color-accent);
-  outline-offset: 4px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Remove default focus for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .sr-only {
@@ -112,11 +128,17 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .bounce-anim {
+    animation: none !important;
   }
 }
 
@@ -158,16 +180,17 @@ select {
    ========================================================================== */
 [data-theme="dark"] {
   --color-accent: #60a5fa;
-  --color-accent-hover: #3b82f6;
+  --color-accent-hover: #93c5fd;
   --bg-current: #0f172a;
   --card-bg: #1e293b;
   --text-main: #ffffff;
-  --text-dim: #e0e0e0;
-  --border-color: #555555;
+  --text-dim: #cbd5e1;
+  --border-color: #64748b;
   --header-bg: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
   --btn-text: #000000;
   --input-bg: #0a0a0a;
   --text-side-bg: #101826;
+  --focus-ring: 3px solid #93c5fd;
 }
 
 [data-theme="dark"] .icon-grid span,
@@ -234,11 +257,21 @@ select {
   gap: 15px;
 }
 
+.header-socials {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .header-socials a {
   color: #b3b3b3;
   transition: color 0.3s ease;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .header-socials a:hover {
@@ -297,12 +330,22 @@ select {
   backdrop-filter: blur(10px);
   flex-direction: column;
   padding: 20px;
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   z-index: 2995;
 }
 
+.mobile-nav[hidden] {
+  display: none;
+}
+
 .mobile-nav.mobile-nav-open {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .mobile-nav a {
@@ -362,10 +405,9 @@ select {
 .section:nth-child(4) { background-color: var(--text-side-bg); }
 .section:nth-child(5) { background-color: #0d1420; }
 
-/* Rendering Performance */
+/* Rendering Performance - contain for layout isolation */
 .section {
-  contain: content;
-  will-change: transform; /* Hint for scroll snap performance */
+  contain: layout style;
 }
 
 /* ==========================================================================
@@ -395,7 +437,6 @@ select {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease;
-  will-change: opacity, transform;
 }
 
 .section.is-visible .project-card:nth-child(1) { transition-delay: 0.08s; }
@@ -415,7 +456,6 @@ select {
   opacity: 0;
   transform: scale(0.85) translateY(10px);
   transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
 }
 
 .section.is-visible .icon-grid span:nth-child(1) { transition-delay: 0.05s; }
@@ -441,7 +481,6 @@ select {
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
 }
 
 .section.is-visible .contact-form .form-row { transition-delay: 0.08s; }
@@ -783,6 +822,15 @@ h1 {
   gap: 35px;
   justify-items: center;
   align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.icon-grid li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon-grid span {
@@ -917,6 +965,17 @@ h1 {
   color: var(--text-dim);
 }
 
+.contact-sidebar p a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-sidebar p a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
 .contact-sidebar p span {
   margin-right: 8px;
   color: var(--color-accent);
@@ -924,15 +983,19 @@ h1 {
 
 .footer-socials {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   margin-top: 15px;
 }
 
 .footer-socials a {
   color: #b3b3b3;
   font-size: 1.5rem;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px;
+  min-width: 44px;
+  min-height: 44px;
   transition: color 0.3s ease;
 }
 
@@ -1281,8 +1344,10 @@ h1 {
   .icon-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+    padding: 0;
   }
 
+  .icon-grid li { display: flex; align-items: center; justify-content: center; }
   .icon-grid span { font-size: 2.5rem; }
 
   .contact-form { gap: 12px; }
@@ -1699,7 +1764,14 @@ h1 {
     align-items: center;
     justify-items: center;
     gap: 10px;
-    padding: 5px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .icon-grid li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .cv-mobile-card {

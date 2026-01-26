@@ -1,4 +1,4 @@
-const { createApp, ref, reactive, onMounted } = Vue;
+const { createApp, ref, reactive, onMounted, onUnmounted } = Vue;
 
 createApp({
   setup() {
@@ -52,7 +52,7 @@ createApp({
       }
     ]);
 
-    // Scroll Handling
+    // Scroll Handling with passive listener optimization
     let ticking = false;
     const handleScroll = (e) => {
       if (ticking) return;
@@ -86,10 +86,10 @@ createApp({
     };
 
     const scrollToTop = () => {
-      scrollContainer.value.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollContainer.value?.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    // Form Submission
+    // Form Submission with better error handling
     const submitForm = async () => {
       formStatus.type = '';
       formStatus.message = '';
@@ -119,31 +119,59 @@ createApp({
       }
     };
 
+    // Lazy load iframe when skills section is visible
+    const loadCVIframe = () => {
+      const iframe = document.querySelector('.cv-iframe[data-src]');
+      if (iframe && !iframe.src) {
+        iframe.src = iframe.dataset.src;
+      }
+    };
+
+    // Check if device is mobile/low-power
+    const isMobileDevice = () => {
+      return window.matchMedia('(max-width: 767px)').matches ||
+             window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    };
+
     // Initialize
+    let resizeHandler = null;
+    let wheelHandler = null;
+
     onMounted(() => {
-      // Section visibility observer
+      // Section visibility observer with optimized callbacks
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            requestAnimationFrame(() => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible', 'was-visible');
-                // Reset About Me scroll position when section becomes visible
-                if (entry.target.id === 'about-me' && aboutTextSide.value) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible', 'was-visible');
+
+              // Lazy load CV iframe when skills section is visible
+              if (entry.target.id === 'skills') {
+                loadCVIframe();
+              }
+
+              // Reset About Me scroll position when section becomes visible
+              if (entry.target.id === 'about-me') {
+                if (aboutTextSide.value) {
                   aboutTextSide.value.scrollTop = 0;
                   isAboutAtBottom.value = false;
                 }
-              } else {
-                entry.target.classList.remove('is-visible');
+                // Load about video when section is visible (all devices)
+                if (aboutVideo.value && !aboutVideo.value.src) {
+                  aboutVideo.value.src = 'videos/family.mp4';
+                  aboutVideo.value.load();
+                }
               }
-            });
+            } else {
+              entry.target.classList.remove('is-visible');
+            }
           });
         },
-        { root: scrollContainer.value, threshold: 0.5 }
+        { root: scrollContainer.value, threshold: 0.3 }
       );
       document.querySelectorAll('.section').forEach((s) => observer.observe(s));
 
-      // Scrollbar width calculation
+      // Scrollbar width calculation (prevents layout shift)
       const updateScrollbarWidth = () => {
         if (scrollContainer.value) {
           const width = scrollContainer.value.offsetWidth - scrollContainer.value.clientWidth;
@@ -151,36 +179,54 @@ createApp({
         }
       };
       updateScrollbarWidth();
-      window.addEventListener('resize', updateScrollbarWidth);
+      resizeHandler = updateScrollbarWidth;
+      window.addEventListener('resize', resizeHandler, { passive: true });
 
       // About section wheel navigation
       if (aboutTextSide.value) {
-        aboutTextSide.value.addEventListener('wheel', (e) => {
+        wheelHandler = (e) => {
           const el = aboutTextSide.value;
+          if (!el) return;
+
           const isAtTop = el.scrollTop <= 5;
           const isAtBottom = el.scrollHeight - el.scrollTop <= el.clientHeight + 10;
 
           if (isAtTop && e.deltaY < 0) return;
           if (isAtBottom && e.deltaY > 0) {
             e.preventDefault();
-            scrollContainer.value.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+            scrollContainer.value?.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
           }
-        }, { passive: false });
+        };
+        aboutTextSide.value.addEventListener('wheel', wheelHandler, { passive: false });
       }
 
-      // Performance: Only load videos on desktop/tablet to save mobile bandwidth
-      // This fixes "Enormous network payloads"
-      if (window.matchMedia("(min-width: 768px)").matches) {
-        if (heroVideo.value) {
-          heroVideo.value.src = "videos/hero.mp4";
-          heroVideo.value.load();
-        }
+      // Performance: Only load hero video on desktop/tablet
+      // This significantly improves mobile LCP and reduces data usage
+      if (!isMobileDevice() && heroVideo.value) {
+        // Use intersection observer for hero video too
+        const heroObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && heroVideo.value && !heroVideo.value.src) {
+                heroVideo.value.src = 'videos/hero.mp4';
+                heroVideo.value.load();
+                heroObserver.disconnect();
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        heroObserver.observe(document.getElementById('hero'));
       }
+    });
 
-      // About video: Load on all devices (per user request)
-      if (aboutVideo.value) {
-        aboutVideo.value.src = "videos/family.mp4";
-        // Allow browser to manage loading priority
+    // Cleanup event listeners on unmount
+    onUnmounted(() => {
+      if (resizeHandler) {
+        window.removeEventListener('resize', resizeHandler);
+      }
+      if (wheelHandler && aboutTextSide.value) {
+        aboutTextSide.value.removeEventListener('wheel', wheelHandler);
       }
     });
 

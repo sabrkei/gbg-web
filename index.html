@@ -10,12 +10,12 @@
   <meta name="description" content="Scott is a front-end developer and designer based in Gothenburg, Sweden. Specializing in Vue.js, React, and modern web development. Available for internship opportunities.">
   <meta name="keywords" content="front-end developer, web designer, Vue.js, React, JavaScript, Gothenburg, Sweden, portfolio, web development, UI/UX">
   <meta name="author" content="Scott">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://gbg-web.com">
   <link rel="icon" type="image/webp" href="images/gbg-web.webp">
 
   <!-- Security & Best Practices -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https://gbg-web.com; frame-src 'self' https://docs.google.com; connect-src 'self' https://formspree.io; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- Open Graph / Facebook -->
@@ -24,6 +24,8 @@
   <meta property="og:title" content="GBG-Web | Scott - Front-End Developer & Designer">
   <meta property="og:description" content="Front-end developer and designer based in Gothenburg, Sweden. Specializing in Vue.js, React, and modern web development.">
   <meta property="og:image" content="https://gbg-web.com/images/profilephoto.webp">
+  <meta property="og:image:width" content="160">
+  <meta property="og:image:height" content="160">
   <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="GBG-Web">
 
@@ -34,10 +36,14 @@
   <meta name="twitter:description" content="Front-end developer and designer based in Gothenburg, Sweden. Specializing in Vue.js, React, and modern web development.">
   <meta name="twitter:image" content="https://gbg-web.com/images/profilephoto.webp">
 
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#000000">
+  <!-- Additional SEO & PWA -->
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GBG-Web">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
   <meta name="geo.region" content="SE-O">
   <meta name="geo.placename" content="Gothenburg">
 
@@ -61,55 +67,84 @@
     },
     "email": "contact@gbg-web.com",
     "knowsAbout": ["JavaScript", "Vue.js", "React", "HTML", "CSS", "TypeScript", "Node.js", "Web Development", "UI/UX Design"],
-    "sameAs": []
+    "sameAs": [
+      "https://www.linkedin.com/in/scottabrahamkeinstrom/",
+      "https://github.com/sabrkei",
+      "https://codepen.io/sabrkei"
+    ]
   }
   </script>
 
-  <!-- Preconnect & Preload -->
+  <!-- DNS Prefetch & Preconnect (ordered by priority) -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="preconnect" href="https://unpkg.com">
-  <link rel="preconnect" href="https://docs.google.com">
-  <link rel="preload" as="image" href="images/hero-poster.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="images/gbg-web.webp">
-  <link rel="preload" as="style" href="style.css">
 
-  <!-- Fonts & Icons (Non-blocking) -->
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <!-- Critical Resource Preloads -->
+  <link rel="preload" as="style" href="style.css">
+  <link rel="preload" as="image" href="images/hero-poster.webp" fetchpriority="high" type="image/webp">
+  <link rel="preload" as="image" href="images/gbg-web.webp" type="image/webp">
+
+  <!-- Critical CSS Inline -->
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{height:100%;background:#0f172a}
+    body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f172a;color:#fff;min-height:100%;overflow:hidden}
+    .scroll-container{height:100dvh;overflow-y:scroll;overflow-x:hidden}
+    .section{height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:0 8%;background:#0f172a}
+    #hero{position:relative}
+    .hero-video-container{position:absolute;inset:0;background:#0f172a}
+    .hero-video{width:100%;height:100%;object-fit:cover}
+    .video-overlay{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+    .hero-text{z-index:2;text-align:center;color:#fff}
+    .hero-logo{width:240px;max-width:70vw;height:auto}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:480px){html,body,.section{background:#000}}
+  </style>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts (Non-blocking with font-display:swap) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+
+  <!-- Icons (Defer loading) -->
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-  <!-- Styles & Scripts -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Vue & App Script -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 
 <body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <div id="app">
     <div class="header-sensor" @mouseenter="isHeaderForced = true" aria-hidden="true"></div>
 
     <!-- Header -->
     <header class="main-header" :class="{ 'header-hidden': isHeaderHidden && !isHeaderForced }"
-      @mouseenter="isHeaderForced = true" @mouseleave="isHeaderForced = false" role="banner">
+      @mouseenter="isHeaderForced = true" @mouseleave="isHeaderForced = false">
       <div class="left-group">
-        <div class="header-socials">
-          <a href="https://www.linkedin.com/in/scottabrahamkeinstrom/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><span class="fab fa-linkedin" role="img" aria-hidden="true"></span></a>
-          <a href="https://github.com/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><span class="fab fa-github" role="img" aria-hidden="true"></span></a>
-          <a href="https://codepen.io/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="CodePen Profile"><span class="fab fa-codepen" role="img" aria-hidden="true"></span></a>
-        </div>
+        <nav class="header-socials" aria-label="Social media links">
+          <a href="https://www.linkedin.com/in/scottabrahamkeinstrom/" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile"><span class="fab fa-linkedin" aria-hidden="true"></span></a>
+          <a href="https://github.com/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile"><span class="fab fa-github" aria-hidden="true"></span></a>
+          <a href="https://codepen.io/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="Visit my CodePen profile"><span class="fab fa-codepen" aria-hidden="true"></span></a>
+        </nav>
       </div>
       <div class="right-group">
-        <button class="mobile-menu-toggle" @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Toggle Navigation Menu" aria-expanded="false" :aria-expanded="mobileMenuOpen">
-          <span :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'" role="img" aria-hidden="true"></span>
+        <button class="mobile-menu-toggle" @click="mobileMenuOpen = !mobileMenuOpen" :aria-expanded="mobileMenuOpen ? 'true' : 'false'" aria-controls="mobile-nav" aria-label="Open navigation menu">
+          <span :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'" aria-hidden="true"></span>
         </button>
       </div>
     </header>
 
     <!-- Mobile Navigation -->
-    <nav class="mobile-nav" :class="{ 'mobile-nav-open': mobileMenuOpen }" aria-label="Mobile Navigation" role="navigation">
+    <nav id="mobile-nav" class="mobile-nav" :class="{ 'mobile-nav-open': mobileMenuOpen }" aria-label="Main navigation" :hidden="!mobileMenuOpen">
       <a href="#portfolio" @click.prevent="scrollToSection('portfolio'); mobileMenuOpen = false">Portfolio</a>
       <a href="#skills" @click.prevent="scrollToSection('skills'); mobileMenuOpen = false">Skills</a>
       <a href="#about-me" @click.prevent="scrollToSection('about-me'); mobileMenuOpen = false">About</a>
@@ -117,22 +152,20 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="scroll-container" ref="scrollContainer" @scroll.passive="handleScroll" role="main">
+    <main id="main-content" class="scroll-container" ref="scrollContainer" @scroll.passive="handleScroll">
 
       <!-- Hero Section -->
       <section id="hero" class="section" aria-labelledby="hero-heading">
         <div class="hero-video-container">
-          <video autoplay muted loop playsinline preload="metadata" class="hero-video" poster="images/hero-poster.webp" width="1920" height="1080" aria-hidden="true">
-            <source src="videos/hero.mp4" type="video/mp4">
-          </video>
+          <video ref="heroVideo" autoplay muted loop playsinline preload="none" class="hero-video" poster="images/hero-poster.webp" width="1920" height="1080" aria-hidden="true"></video>
           <div class="video-overlay" aria-hidden="true"></div>
         </div>
         <div class="hero-text">
-          <img src="images/gbg-web.webp" alt="GBG-Web Logo" class="hero-logo" width="300" height="117" sizes="(max-width: 480px) 70vw, 240px">
+          <img src="images/gbg-web.webp" alt="GBG-Web Logo" class="hero-logo" width="300" height="117" fetchpriority="high">
           <h1 id="hero-heading">Designer & Developer <br><span class="sub-heading">focused on modern web.</span></h1>
         </div>
         <button class="hero-scroll-prompt" @click="scrollToSection('portfolio')" aria-label="Scroll to portfolio section">
-          <span class="fas fa-chevron-down bounce-anim" role="img" aria-hidden="true"></span>
+          <span class="fas fa-chevron-down bounce-anim" aria-hidden="true"></span>
         </button>
       </section>
 
@@ -141,26 +174,26 @@
         <h2 id="portfolio-heading" class="sr-only">Portfolio</h2>
         <div class="projects-column">
           <h3 class="reel-title">Personal Portfolio</h3>
-          <div class="project-grid-half">
-            <article v-for="(project, index) in projects" :key="index" class="project-card">
-              <img :src="project.image" :alt="project.title + ' project thumbnail'" class="project-img" loading="lazy" width="380" height="200" decoding="async" sizes="(max-width: 480px) 100vw, (max-width: 1098px) 50vw, 380px">
+          <div class="project-grid-half" role="list">
+            <article v-for="(project, index) in projects" :key="index" class="project-card" role="listitem">
+              <img :src="project.image" :alt="'Screenshot of ' + project.title + ' project'" class="project-img" loading="lazy" width="380" height="200" decoding="async">
               <div class="project-info">
                 <h4>{{ project.title }}</h4>
                 <p>{{ project.description }}</p>
-                <a :href="project.link" target="_blank" rel="noopener noreferrer" class="github-link"><span class="fab fa-github" role="img" aria-hidden="true"></span> View Repo</a>
+                <a :href="project.link" target="_blank" rel="noopener noreferrer" class="github-link" :aria-label="'View ' + project.title + ' repository on GitHub'"><span class="fab fa-github" aria-hidden="true"></span> View Repo</a>
               </div>
             </article>
           </div>
         </div>
         <div class="projects-column">
           <h3 class="reel-title">Customer Projects</h3>
-          <div class="project-grid-half">
-            <article v-for="(project, index) in customerProjects" :key="index" class="project-card client-card">
-              <img :src="project.image" :alt="project.title + ' project thumbnail'" class="project-img" loading="lazy" width="380" height="200" decoding="async" sizes="(max-width: 480px) 100vw, (max-width: 1098px) 50vw, 380px">
+          <div class="project-grid-half" role="list">
+            <article v-for="(project, index) in customerProjects" :key="index" class="project-card client-card" role="listitem">
+              <img :src="project.image" :alt="'Screenshot of ' + project.title + ' project'" class="project-img" loading="lazy" width="380" height="200" decoding="async">
               <div class="project-info">
                 <h4>{{ project.title }}</h4>
                 <p>{{ project.description }}</p>
-                <a :href="project.link" target="_blank" rel="noopener noreferrer" class="github-link"><span class="fas fa-external-link-alt" role="img" aria-hidden="true"></span> View Site</a>
+                <a :href="project.link" target="_blank" rel="noopener noreferrer" class="github-link" :aria-label="'Visit ' + project.title + ' website'"><span class="fas fa-external-link-alt" aria-hidden="true"></span> View Site</a>
               </div>
             </article>
           </div>
@@ -172,25 +205,25 @@
         <h2 id="skills-heading" class="sr-only">Skills and CV</h2>
         <div>
           <h3 class="reel-title">Technical Skillset / Stack</h3>
-          <div class="icon-grid" role="list" aria-label="Technical skills">
-            <span class="fab fa-js icon-js" role="img" aria-label="JavaScript"></span>
-            <span class="fab fa-vuejs icon-vue" role="img" aria-label="Vue.js"></span>
-            <span class="fab fa-react icon-react" role="img" aria-label="React"></span>
-            <span class="fab fa-node-js icon-node" role="img" aria-label="Node.js"></span>
-            <span class="fab fa-html5 icon-html" role="img" aria-label="HTML5"></span>
-            <span class="fab fa-css3-alt icon-css" role="img" aria-label="CSS3"></span>
-            <span class="fab fa-wordpress icon-wordpress" role="img" aria-label="WordPress"></span>
-            <span class="fab fa-sass icon-sass" role="img" aria-label="Sass"></span>
-            <span class="fab fa-git-alt icon-git" role="img" aria-label="Git"></span>
-          </div>
+          <ul class="icon-grid" aria-label="Technical skills I work with">
+            <li><span class="fab fa-js icon-js" role="img" aria-label="JavaScript"></span></li>
+            <li><span class="fab fa-vuejs icon-vue" role="img" aria-label="Vue.js"></span></li>
+            <li><span class="fab fa-react icon-react" role="img" aria-label="React"></span></li>
+            <li><span class="fab fa-node-js icon-node" role="img" aria-label="Node.js"></span></li>
+            <li><span class="fab fa-html5 icon-html" role="img" aria-label="HTML5"></span></li>
+            <li><span class="fab fa-css3-alt icon-css" role="img" aria-label="CSS3"></span></li>
+            <li><span class="fab fa-wordpress icon-wordpress" role="img" aria-label="WordPress"></span></li>
+            <li><span class="fab fa-sass icon-sass" role="img" aria-label="Sass"></span></li>
+            <li><span class="fab fa-git-alt icon-git" role="img" aria-label="Git"></span></li>
+          </ul>
         </div>
         <div class="cv-container">
           <h3 class="reel-title">CV</h3>
           <div class="cv-wrapper">
-            <iframe src="https://docs.google.com/gview?url=https://gbg-web.com/assets/SAKCV.pdf&embedded=true" class="cv-iframe" title="Scott's CV" loading="lazy" width="100%" height="400" sandbox="allow-scripts allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>
+            <iframe data-src="https://docs.google.com/gview?url=https://gbg-web.com/assets/SAKCV.pdf&embedded=true" class="cv-iframe" title="Scott's CV - PDF document" loading="lazy" width="100%" height="400" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
             <div class="cv-controls">
-              <a href="assets/SAKCV.pdf" target="_blank" rel="noopener" aria-label="Open CV in new tab"><span class="fas fa-expand" role="img" aria-hidden="true"></span></a>
-              <a href="assets/SAKCV.pdf" download aria-label="Download CV"><span class="fas fa-download" role="img" aria-hidden="true"></span></a>
+              <a href="assets/SAKCV.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open CV in new tab"><span class="fas fa-expand" aria-hidden="true"></span></a>
+              <a href="assets/SAKCV.pdf" download="Scott-CV.pdf" aria-label="Download CV as PDF"><span class="fas fa-download" aria-hidden="true"></span></a>
             </div>
           </div>
         </div>
@@ -199,9 +232,7 @@
       <!-- About Section -->
       <section id="about-me" class="section split-layout" aria-labelledby="about-heading">
         <div class="split-side animation-side">
-          <video autoplay muted loop playsinline preload="none" class="about-video" aria-hidden="true">
-            <source src="videos/family.mp4" type="video/mp4">
-          </video>
+          <video ref="aboutVideo" autoplay muted loop playsinline preload="none" class="about-video" aria-hidden="true"></video>
         </div>
         <div class="split-side text-side" ref="aboutTextSide" @scroll="checkAboutScroll">
           <h2 id="about-heading" class="reel-title">About Me</h2>
@@ -216,8 +247,8 @@
           <p>My goal is now very simple: to make technology feel more human — beautiful, intuitive, and just a little bit fun. It's important we don't lose sight of that and make sure we continue to do the things we love and enjoy. I just wish I could have had the 38 year old me tell me that when I was 20</p>
           <p>When I'm not coding, I enjoy exercising and training — an area I hope to develop practical, everyday tools for that can be used (and loved) by other like-minded tech and fitness enthusiasts but most importantly, I love spending time with my beautiful three children, who never fail to remind me how creativity and curiosity start — and thrive — at home.</p>
           <p>If I sound like the type of person you'd like working as part of your team, please don't hesitate to get in touch. I'm currently searching for internship (LIA) opportunities — and I'd love to hear from you – <strong><a href="mailto:contact@gbg-web.com">contact@gbg-web.com</a></strong></p>
-          <button class="scroll-prompt" @click="handleAboutIconClick" aria-label="Scroll within about section">
-            <span :class="isAboutAtBottom ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="bounce-anim" role="img" aria-hidden="true"></span>
+          <button class="scroll-prompt" @click="handleAboutIconClick" :aria-label="isAboutAtBottom ? 'Scroll back to top of about section' : 'Scroll down to read more'">
+            <span :class="isAboutAtBottom ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="bounce-anim" aria-hidden="true"></span>
           </button>
         </div>
       </section>
@@ -226,39 +257,39 @@
       <section id="contact" class="section split-layout" aria-labelledby="contact-heading">
         <div class="contact-split-side">
           <div class="contact-sidebar">
-            <img src="images/profilephoto.webp" alt="Scott - Front-End Developer portrait photo" class="profile-img" width="160" height="160" loading="lazy" decoding="async" sizes="(max-width: 480px) 100vw, 220px">
+            <img src="images/profilephoto.webp" alt="Scott - Front-End Developer" class="profile-img" width="160" height="160" loading="lazy" decoding="async">
             <h2 id="contact-heading">Let's Connect</h2>
-            <p><span class="fas fa-envelope" role="img" aria-hidden="true"></span> contact@gbg-web.com</p>
-            <div class="footer-socials">
-              <a href="https://www.linkedin.com/in/scottabrahamkeinstrom/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><span class="fab fa-linkedin" role="img" aria-hidden="true"></span></a>
-              <a href="https://github.com/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><span class="fab fa-github" role="img" aria-hidden="true"></span></a>
-              <a href="https://codepen.io/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="CodePen Profile"><span class="fab fa-codepen" role="img" aria-hidden="true"></span></a>
-            </div>
-            <p class="copyright-container">gbg-Web &copy; 2026</p>
+            <p><span class="fas fa-envelope" aria-hidden="true"></span> <a href="mailto:contact@gbg-web.com">contact@gbg-web.com</a></p>
+            <nav class="footer-socials" aria-label="Contact social links">
+              <a href="https://www.linkedin.com/in/scottabrahamkeinstrom/" target="_blank" rel="noopener noreferrer" aria-label="Connect with me on LinkedIn"><span class="fab fa-linkedin" aria-hidden="true"></span></a>
+              <a href="https://github.com/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="View my projects on GitHub"><span class="fab fa-github" aria-hidden="true"></span></a>
+              <a href="https://codepen.io/sabrkei" target="_blank" rel="noopener noreferrer" aria-label="See my code experiments on CodePen"><span class="fab fa-codepen" aria-hidden="true"></span></a>
+            </nav>
+            <p class="copyright-container"><small>gbg-Web &copy; 2026</small></p>
           </div>
         </div>
         <div class="contact-split-side">
-          <form class="contact-form" @submit.prevent="submitForm" aria-label="Contact Form">
+          <form class="contact-form" @submit.prevent="submitForm" aria-labelledby="contact-heading" novalidate>
             <div class="form-row">
               <div class="form-group">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" id="name" name="name" v-model="formData.name" placeholder="Your name" required autocomplete="name">
+                <label for="name" class="form-label">Name <span class="sr-only">(required)</span></label>
+                <input type="text" id="name" name="name" v-model="formData.name" placeholder="Your name" required autocomplete="name" aria-required="true">
               </div>
               <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" v-model="formData.email" placeholder="your@email.com" required autocomplete="email">
+                <label for="email" class="form-label">Email <span class="sr-only">(required)</span></label>
+                <input type="email" id="email" name="email" v-model="formData.email" placeholder="your@email.com" required autocomplete="email" aria-required="true" inputmode="email">
               </div>
             </div>
             <div class="form-group">
-              <label for="message" class="form-label">Message</label>
-              <textarea id="message" name="message" v-model="formData.message" placeholder="How can I help you?" rows="5" required></textarea>
+              <label for="message" class="form-label">Message <span class="sr-only">(required)</span></label>
+              <textarea id="message" name="message" v-model="formData.message" placeholder="How can I help you?" rows="5" required aria-required="true"></textarea>
             </div>
-            <button type="submit" class="submit-btn" :class="{ loading: formLoading }" :disabled="formLoading">
-              <span class="btn-text"><span class="fas fa-paper-plane" role="img" aria-hidden="true"></span> Send Message</span>
+            <button type="submit" class="submit-btn" :class="{ loading: formLoading }" :disabled="formLoading" :aria-busy="formLoading">
+              <span class="btn-text"><span class="fas fa-paper-plane" aria-hidden="true"></span> Send Message</span>
               <span class="spinner" aria-hidden="true"></span>
             </button>
-            <div v-if="formStatus.message" class="form-status" :class="formStatus.type" role="alert" aria-live="polite">
-              <span :class="formStatus.type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'" role="img" aria-hidden="true"></span>
+            <div v-if="formStatus.message" class="form-status" :class="formStatus.type" role="status" aria-live="polite" aria-atomic="true">
+              <span :class="formStatus.type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'" aria-hidden="true"></span>
               <span>{{ formStatus.message }}</span>
             </div>
           </form>
@@ -267,8 +298,8 @@
     </main>
 
     <!-- Scroll to Top Button -->
-    <button class="fab-btn scroll-up" :class="{ visible: isScrollUpVisible }" @click="scrollToTop" aria-label="Scroll to top of page">
-      <span class="fas fa-arrow-up" role="img" aria-hidden="true"></span>
+    <button class="fab-btn scroll-up" :class="{ visible: isScrollUpVisible }" @click="scrollToTop" aria-label="Scroll to top of page" :tabindex="isScrollUpVisible ? 0 : -1">
+      <span class="fas fa-arrow-up" aria-hidden="true"></span>
     </button>
   </div>
 </body>
