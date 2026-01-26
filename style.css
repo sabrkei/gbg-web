@@ -146,7 +146,6 @@ select {
    ========================================================================== */
 .profile-img,
 .project-img,
-.hero-video,
 dotlottie-wc {
   filter: grayscale(100%);
 }
@@ -452,6 +451,7 @@ dotlottie-wc {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: sepia(0.3) saturate(0.6) contrast(1.1) brightness(1.1);
 }
 
 .video-overlay {
@@ -513,23 +513,33 @@ h1 {
    PORTFOLIO SECTION (NEW)
    ========================================================================== */
 #portfolio.split-layout {
+  display: flex;
+  flex-direction: column;
   padding: 0;
-  align-items: stretch;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .portfolio-column {
   display: flex;
   flex-direction: column;
-  padding: 80px 40px 40px;
-  height: 100%;
+  justify-content: center;
+  padding: 20px 40px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .portfolio-column.portfolio-projects {
   background-color: #000000;
+  padding-top: 80px; /* Space for header */
+  padding-bottom: 10px;
 }
 
 .portfolio-column.portfolio-sites {
   background-color: #0a0f1a;
+  padding-top: 10px;
+  padding-bottom: 40px;
 }
 
 .portfolio-column .reel-title {
@@ -538,18 +548,22 @@ h1 {
 }
 
 .portfolio-grid-half {
-  display: grid;
-  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  padding: 10px 5px 20px 5px;
+  scrollbar-width: none; /* Firefox */
   flex: 1;
   min-height: 0;
+  align-items: stretch;
+  width: 100%;
 }
 
-.portfolio-projects .portfolio-grid-half {
-  grid-template-rows: repeat(3, 1fr);
-}
-
-.portfolio-sites .portfolio-grid-half {
-  grid-template-rows: 1fr;
+.portfolio-grid-half::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .project-card-new {
@@ -558,10 +572,13 @@ h1 {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  flex: 0 0 400px; /* Fixed width for desktop cards */
+  width: 400px;
   height: 100%;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--border-color);
+  scroll-snap-align: center;
 }
 
 .project-card-new:hover {
@@ -1180,14 +1197,8 @@ h1 {
 
   .split-layout { grid-template-columns: 1fr; }
 
-  #portfolio.split-layout {
-    display: block;
-    padding: 0;
-    overflow-y: auto;
-  }
   .portfolio-column {
-    height: auto;
-    padding: 80px 40px 40px;
+    padding: 20px 40px;
   }
   .text-side {
     padding: 40px 5% 0;
@@ -1198,17 +1209,6 @@ h1 {
   }
 
   .text-side p:last-of-type { padding-bottom: 80px; }
-
-  .portfolio-projects .portfolio-grid-half,
-  .portfolio-sites .portfolio-grid-half {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .portfolio-column + .portfolio-column {
-    padding-top: 40px;
-  }
 
   .icon-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1318,12 +1318,6 @@ h1 {
     bottom: 80px;
   }
 
-  #portfolio.section {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100dvh;
-  }
   .portfolio-column {
     padding: 80px 20px 20px;
     padding: 10px 20px;
@@ -1345,25 +1339,9 @@ h1 {
     padding-bottom: 25px;
   }
 
-  .portfolio-projects .portfolio-grid-half,
-  .portfolio-sites .portfolio-grid-half {
-    display: flex;
-    flex-direction: row;
+  .portfolio-grid-half {
     gap: 15px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
     padding: 5px 2px 15px 2px;
-    scrollbar-width: none;
-    flex: 1;
-    min-height: 0;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  .portfolio-projects .portfolio-grid-half::-webkit-scrollbar,
-  .portfolio-sites .portfolio-grid-half::-webkit-scrollbar {
-    display: none;
   }
 
   .project-card-new {
