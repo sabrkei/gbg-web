@@ -193,7 +193,6 @@ select {
   --focus-ring: 3px solid #93c5fd;
 }
 
-[data-theme="dark"] .icon-grid .icon-skill,
 [data-theme="dark"] .profile-img,
 [data-theme="dark"] .project-img,
 [data-theme="dark"] .hero-video,
@@ -775,11 +774,23 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--card-bg);
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icon-grid li:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .icon-skill {
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
   fill: currentColor;
 }
 
@@ -1285,7 +1296,10 @@ h1 {
     padding: 0;
   }
 
-  .icon-grid li { display: flex; align-items: center; justify-content: center; }
+  .icon-grid li {
+    width: 70px;
+    height: 70px;
+  }
   .icon-skill { width: 2.5rem; height: 2.5rem; }
 
   .contact-form { gap: 12px; }
@@ -1550,7 +1564,12 @@ h1 {
     gap: 12px;
   }
 
-  .icon-skill { width: 4rem; height: 4rem; }
+  .icon-grid li {
+    width: 90px;
+    height: 90px;
+  }
+
+  .icon-skill { width: 3.5rem; height: 3.5rem; }
 
   .cv-wrapper { border-radius: 8px; margin-bottom: 20px; }
   .cv-mobile-card { padding: 30px 15px; }
