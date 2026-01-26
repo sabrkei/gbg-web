@@ -148,6 +148,7 @@
     <symbol id="icon-paper-plane" viewBox="0 0 512 512"><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 492.3 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 289.1s5.5-22.6 15.4-28.7l480-288c10.1-6 22.4-6.1 32.7-.2z"/></symbol>
     <symbol id="icon-check-circle" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></symbol>
     <symbol id="icon-exclamation-circle" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></symbol>
+    <symbol id="icon-file-pdf" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 224H88c30.9 0 56 25.1 56 56s-25.1 56-56 56H80v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm24 80c13.3 0 24-10.7 24-24s-10.7-24-24-24H80v48h8zm72-64c0-8.8 7.2-16 16-16h24c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H176c-8.8 0-16-7.2-16-16V240zm32 112h8c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16h-8v96zm96-128h48c8.8 0 16 7.2 16 16s-7.2 16-16 16H304v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H304v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V240c0-8.8 7.2-16 16-16z"/></symbol>
   </svg>
 
   <!-- Skip Link for Accessibility -->
@@ -241,11 +242,23 @@
         </div>
         <div class="cv-container">
           <h3 class="reel-title">CV</h3>
-          <div class="cv-wrapper">
+          <!-- Desktop: iframe preview -->
+          <div class="cv-wrapper cv-desktop">
             <iframe data-src="https://docs.google.com/gview?url=https://gbg-web.com/assets/SAKCV.pdf&embedded=true" class="cv-iframe" title="Scott's CV - PDF document" loading="lazy" width="100%" height="400" sandbox="allow-scripts allow-same-origin"></iframe>
             <div class="cv-controls">
               <a href="assets/SAKCV.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open CV in new tab"><svg class="icon" aria-hidden="true"><use href="#icon-expand"></use></svg></a>
               <a href="assets/SAKCV.pdf" download="Scott-CV.pdf" aria-label="Download CV as PDF"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg></a>
+            </div>
+          </div>
+          <!-- Mobile: buttons only -->
+          <div class="cv-wrapper cv-mobile">
+            <div class="cv-mobile-card">
+              <svg class="icon icon-xl" aria-hidden="true"><use href="#icon-file-pdf"></use></svg>
+              <span>View my CV</span>
+              <div class="cv-mobile-buttons">
+                <a href="assets/SAKCV.pdf" target="_blank" rel="noopener noreferrer" class="cv-btn"><svg class="icon" aria-hidden="true"><use href="#icon-expand"></use></svg> View CV</a>
+                <a href="assets/SAKCV.pdf" download="Scott-CV.pdf" class="cv-btn"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg> Download</a>
+              </div>
             </div>
           </div>
         </div>
