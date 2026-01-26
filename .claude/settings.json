@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nReplace Font Awesome with inline SVG sprite system\n\n- Remove Font Awesome CSS import \\(~60KB savings\\)\n- Add inline SVG sprite with 24 icon symbols\n- Update all icon references to use SVG <use> elements\n- Update CSS selectors for SVG icons \\(.icon-skill\\)\n- Maintain icon colors and animations with SVG fill\n\nThis significantly reduces render-blocking CSS and improves\nmobile performance by eliminating external font icon load.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}
