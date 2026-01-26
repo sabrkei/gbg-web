@@ -82,7 +82,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Critical Resource Preloads -->
-  <link rel="preload" as="image" href="images/hero-poster.webp" fetchpriority="high" type="image/webp">
 
   <!-- Critical CSS Inline -->
   <style>
@@ -189,7 +188,7 @@
       <!-- Hero Section -->
       <section id="hero" class="section" aria-labelledby="hero-heading">
         <div class="hero-video-container">
-          <video ref="heroVideo" autoplay muted loop playsinline preload="none" class="hero-video" poster="images/hero-poster.webp" width="1920" height="1080" aria-hidden="true"></video>
+          <video ref="heroVideo" autoplay muted loop playsinline preload="none" class="hero-video" width="1920" height="1080" aria-hidden="true"></video>
           <div class="video-overlay" aria-hidden="true"></div>
         </div>
         <div class="hero-text">
