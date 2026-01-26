@@ -25,7 +25,7 @@ createApp({
     let formStatusTimeout = null;
 
     // Project Data
-    const allProjects = ref([
+    const personalProjects = ref([
       {
         title: "The Daily Grind",
         description: "First HTML/CSS project focusing on layout.",
@@ -47,6 +47,9 @@ createApp({
         link: "https://github.com/sabrkei/football-stats-hub",
         linkType: "repo",
       },
+    ]);
+
+    const siteBuilds = ref([
       {
         title: "NYDS",
         description: "nydancespectacular.com - Dance event in Clearwater, Florida",
@@ -255,7 +258,8 @@ createApp({
       aboutTextSide,
       heroVideo,
       aboutVideo,
-      allProjects,
+      personalProjects,
+      siteBuilds,
       formData,
       formLoading,
       formStatus,

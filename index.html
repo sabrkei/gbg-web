@@ -202,24 +202,42 @@
       </section>
 
       <!-- Portfolio Section -->
-      <section id="portfolio" class="section" aria-labelledby="portfolio-heading">
-        <h2 id="portfolio-heading" class="reel-title">Portfolio</h2>
-        <div class="portfolio-grid" role="list">
-          <article v-for="(project, index) in allProjects" :key="index" class="project-card-new" role="listitem">
-            <div class="project-card-new__image-container">
-              <img :src="project.image" :alt="'Screenshot of ' + project.title + ' project'" class="project-card-new__image" loading="lazy" width="380" height="200" decoding="async">
-            </div>
-            <div class="project-card-new__content">
-              <h3 class="project-card-new__title">{{ project.title }}</h3>
-              <p class="project-card-new__description">{{ project.description }}</p>
-              <a :href="project.link" target="_blank" rel="noopener noreferrer" class="project-card-new__link" :aria-label="(project.linkType === 'repo' ? 'View ' + project.title + ' repository on GitHub' : 'Visit ' + project.title + ' website')">
-                <svg v-if="project.linkType === 'repo'" class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
-                <svg v-else class="icon" aria-hidden="true"><use href="#icon-external-link"></use></svg>
-                <span v-if="project.linkType === 'repo'">View Repo</span>
-                <span v-else>View Site</span>
-              </a>
-            </div>
-          </article>
+      <section id="portfolio" class="section split-layout" aria-labelledby="portfolio-heading">
+        <div class="portfolio-column portfolio-projects">
+          <h2 id="portfolio-heading" class="reel-title">Projects</h2>
+          <div class="portfolio-grid-half" role="list">
+            <article v-for="(project, index) in personalProjects" :key="index" class="project-card-new" role="listitem">
+              <div class="project-card-new__image-container">
+                <img :src="project.image" :alt="'Screenshot of ' + project.title + ' project'" class="project-card-new__image" loading="lazy" width="380" height="200" decoding="async">
+              </div>
+              <div class="project-card-new__content">
+                <h3 class="project-card-new__title">{{ project.title }}</h3>
+                <p class="project-card-new__description">{{ project.description }}</p>
+                <a :href="project.link" target="_blank" rel="noopener noreferrer" class="project-card-new__link" :aria-label="'View ' + project.title + ' repository on GitHub'">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                  <span>View Repo</span>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="portfolio-column portfolio-sites">
+          <h2 class="reel-title">Site Builds</h2>
+          <div class="portfolio-grid-half" role="list">
+            <article v-for="(project, index) in siteBuilds" :key="index" class="project-card-new" role="listitem">
+              <div class="project-card-new__image-container">
+                <img :src="project.image" :alt="'Screenshot of ' + project.title + ' project'" class="project-card-new__image" loading="lazy" width="380" height="200" decoding="async">
+              </div>
+              <div class="project-card-new__content">
+                <h3 class="project-card-new__title">{{ project.title }}</h3>
+                <p class="project-card-new__description">{{ project.description }}</p>
+                <a :href="project.link" target="_blank" rel="noopener noreferrer" class="project-card-new__link" :aria-label="'Visit ' + project.title + ' website'">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-external-link"></use></svg>
+                  <span>View Site</span>
+                </a>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 

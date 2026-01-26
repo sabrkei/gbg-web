@@ -379,7 +379,7 @@ dotlottie-wc {
 }
 
 /* New project card fade */
-.portfolio-grid .project-card-new {
+.portfolio-grid-half .project-card-new {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
@@ -512,21 +512,44 @@ h1 {
 /* ==========================================================================
    PORTFOLIO SECTION (NEW)
    ========================================================================== */
-#portfolio {
+#portfolio.split-layout {
+  padding: 0;
   align-items: stretch;
-  justify-content: center;
-  padding: 100px 40px 40px;
 }
 
-.portfolio-grid {
+.portfolio-column {
+  display: flex;
+  flex-direction: column;
+  padding: 80px 40px 40px;
+  height: 100%;
+}
+
+.portfolio-column.portfolio-projects {
+  background-color: #000000;
+}
+
+.portfolio-column.portfolio-sites {
+  background-color: #0a0f1a;
+}
+
+.portfolio-column .reel-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.portfolio-grid-half {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   gap: 20px;
-  width: 100%;
   flex: 1;
   min-height: 0;
-  max-width: none;
+}
+
+.portfolio-projects .portfolio-grid-half {
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.portfolio-sites .portfolio-grid-half {
+  grid-template-rows: 1fr;
 }
 
 .project-card-new {
@@ -1211,11 +1234,15 @@ h1 {
 
   .split-layout { grid-template-columns: 1fr; }
 
-  .portfolio-grid {
-    gap: 20px;
+  #portfolio.split-layout {
+    display: block;
+    padding: 0;
+    overflow-y: auto;
   }
-
-
+  .portfolio-column {
+    height: auto;
+    padding: 80px 40px 40px;
+  }
   .text-side {
     padding: 40px 5% 0;
     height: calc(100vh - 360px);
@@ -1335,12 +1362,10 @@ h1 {
   }
 
   #portfolio.section {
-    justify-content: flex-start;
-    padding-top: 80px;
+    padding: 0;
   }
-
-  .portfolio-grid {
-    gap: 16px;
+  .portfolio-column {
+    padding: 80px 20px 20px;
   }
 
   .reel-title {
