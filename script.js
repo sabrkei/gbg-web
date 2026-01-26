@@ -8,6 +8,7 @@ createApp({
     const isScrollUpVisible = ref(false);
     const isAboutAtBottom = ref(false);
     const mobileMenuOpen = ref(false);
+    const isOnHeroSection = ref(true);
 
     // DOM Refs
     const scrollContainer = ref(null);
@@ -127,12 +128,6 @@ createApp({
       }
     };
 
-    // Check if device is mobile/low-power
-    const isMobileDevice = () => {
-      return window.matchMedia('(max-width: 767px)').matches ||
-             window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    };
-
     // Initialize
     let resizeHandler = null;
     let wheelHandler = null;
@@ -144,6 +139,11 @@ createApp({
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('is-visible', 'was-visible');
+
+              // Track if we're on hero section for navbar visibility
+              if (entry.target.id === 'hero') {
+                isOnHeroSection.value = true;
+              }
 
               // Lazy load CV iframe when skills section is visible
               if (entry.target.id === 'skills') {
@@ -164,6 +164,11 @@ createApp({
               }
             } else {
               entry.target.classList.remove('is-visible');
+              // Hide navbar when leaving hero section
+              if (entry.target.id === 'hero') {
+                isOnHeroSection.value = false;
+                mobileMenuOpen.value = false; // Close menu when leaving hero
+              }
             }
           });
         },
@@ -200,10 +205,8 @@ createApp({
         aboutTextSide.value.addEventListener('wheel', wheelHandler, { passive: false });
       }
 
-      // Performance: Only load hero video on desktop/tablet
-      // This significantly improves mobile LCP and reduces data usage
-      if (!isMobileDevice() && heroVideo.value) {
-        // Use intersection observer for hero video too
+      // Load hero video on all devices
+      if (heroVideo.value) {
         const heroObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -236,6 +239,7 @@ createApp({
       isScrollUpVisible,
       isAboutAtBottom,
       mobileMenuOpen,
+      isOnHeroSection,
       scrollContainer,
       aboutTextSide,
       heroVideo,

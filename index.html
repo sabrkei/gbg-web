@@ -163,10 +163,10 @@
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <div id="app">
-    <div class="header-sensor" @mouseenter="isHeaderForced = true" aria-hidden="true"></div>
+    <div class="header-sensor" v-show="isOnHeroSection" @mouseenter="isHeaderForced = true" aria-hidden="true"></div>
 
-    <!-- Header -->
-    <header class="main-header" :class="{ 'header-hidden': isHeaderHidden && !isHeaderForced }"
+    <!-- Header - Only visible on hero section -->
+    <header class="main-header" v-show="isOnHeroSection" :class="{ 'header-hidden': isHeaderHidden && !isHeaderForced }"
       @mouseenter="isHeaderForced = true" @mouseleave="isHeaderForced = false">
       <div class="left-group">
         <nav class="header-socials" aria-label="Social media links">
@@ -183,8 +183,8 @@
       </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <nav id="mobile-nav" class="mobile-nav" :class="{ 'mobile-nav-open': mobileMenuOpen }" aria-label="Main navigation" :hidden="!mobileMenuOpen">
+    <!-- Mobile Navigation - Only visible on hero section -->
+    <nav id="mobile-nav" class="mobile-nav" v-show="isOnHeroSection" :class="{ 'mobile-nav-open': mobileMenuOpen }" aria-label="Main navigation" :hidden="!mobileMenuOpen">
       <a href="#portfolio" @click.prevent="scrollToSection('portfolio'); mobileMenuOpen = false">Portfolio</a>
       <a href="#skills" @click.prevent="scrollToSection('skills'); mobileMenuOpen = false">Skills</a>
       <a href="#about-me" @click.prevent="scrollToSection('about-me'); mobileMenuOpen = false">About</a>

@@ -1405,48 +1405,6 @@ h1 {
    RESPONSIVE: MOBILE (480px and below)
    ========================================================================== */
 @media (max-width: 480px) {
-  /* === MOBILE PERFORMANCE OPTIMIZATIONS === */
-  /* Disable all non-essential animations for better performance */
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-delay: 0ms !important;
-    transition-duration: 0.15s !important;
-    transition-delay: 0ms !important;
-  }
-
-  /* Disable GPU-intensive filters */
-  [data-theme="dark"] .icon-grid .icon-skill,
-  [data-theme="dark"] .profile-img,
-  [data-theme="dark"] .project-img,
-  [data-theme="dark"] .site-logo,
-  [data-theme="dark"] .hero-video,
-  [data-theme="dark"] .hero-logo {
-    filter: none !important;
-  }
-
-  /* Remove complex box-shadows on mobile */
-  .project-card {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  .project-card:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Disable section animations completely on mobile */
-  .section:nth-child(n+2):not(.split-layout) > *,
-  .project-grid .project-card,
-  .icon-grid li,
-  .contact-form .form-group,
-  .contact-form .form-row,
-  .contact-form .submit-btn {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
   /* Black background for safe areas (status bar + navigation bar) */
   html {
     background-color: #000000;
@@ -1456,12 +1414,6 @@ h1 {
   .main-header { padding: 10px 15px; background: rgba(0,0,0,0.9); }
   .site-logo { height: 45px; }
   .right-group { gap: 8px; }
-
-  /* Performance: Disable heavy blur effects on mobile */
-  .main-header, .mobile-nav {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
 
   .section {
     padding: 0 5%;
