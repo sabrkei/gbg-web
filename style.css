@@ -1320,9 +1320,57 @@ h1 {
 
   #portfolio.section {
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
   }
   .portfolio-column {
     padding: 80px 20px 20px;
+    padding: 10px 20px;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .portfolio-column.portfolio-projects {
+    padding-top: 70px;
+    padding-bottom: 5px;
+  }
+
+  .portfolio-column.portfolio-sites {
+    padding-top: 5px;
+    padding-bottom: 25px;
+  }
+
+  .portfolio-projects .portfolio-grid-half,
+  .portfolio-sites .portfolio-grid-half {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding: 5px 2px 15px 2px;
+    scrollbar-width: none;
+    flex: 1;
+    min-height: 0;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .portfolio-projects .portfolio-grid-half::-webkit-scrollbar,
+  .portfolio-sites .portfolio-grid-half::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-card-new {
+    flex: 0 0 85%;
+    width: 85%;
+    scroll-snap-align: center;
+    height: 100%;
   }
 
   .reel-title {
