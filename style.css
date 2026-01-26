@@ -535,16 +535,15 @@ h1 {
 .portfolio-column.portfolio-projects {
   background-color: var(--bg-current);
   padding-top: 80px; /* Space for header */
-  padding-bottom: 60px;
+  padding-bottom: 40px;
 }
 
 .portfolio-column.portfolio-sites {
   background-color: #0a0f1a;
-  padding-top: 10px;
   margin-top: -60px; /* Overlap effect */
-  padding-top: 70px; /* Compensate for overlap */
+  padding-top: 80px; /* Compensate for overlap */
   z-index: 2;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
 }
 
 .portfolio-column .reel-title {
@@ -577,8 +576,8 @@ h1 {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  flex: 0 0 400px; /* Fixed width for desktop cards */
-  width: 400px;
+  flex: 0 0 460px; /* Fixed width for desktop cards */
+  width: 460px;
   height: 100%;
   box-shadow: none;
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
