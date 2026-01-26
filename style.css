@@ -1153,7 +1153,6 @@ h1 {
   display: flex;
   align-items: center;
   gap: 12px;
-  animation: slideIn 0.3s ease;
 }
 
 .form-status.success {
@@ -1229,9 +1228,18 @@ h1 {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+.fade-enter-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-from {
+  transform: translateY(-10px);
 }
 
 /* ==========================================================================

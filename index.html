@@ -311,11 +311,13 @@
               <span class="btn-text"><svg class="icon" aria-hidden="true"><use href="#icon-paper-plane"></use></svg> Send Message</span>
               <span class="spinner" aria-hidden="true"></span>
             </button>
-            <div v-if="formStatus.message" class="form-status" :class="formStatus.type" role="status" aria-live="polite" aria-atomic="true">
-              <svg v-if="formStatus.type === 'success'" class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg>
-              <svg v-else class="icon" aria-hidden="true"><use href="#icon-exclamation-circle"></use></svg>
-              <span>{{ formStatus.message }}</span>
-            </div>
+            <transition name="fade">
+              <div v-if="formStatus.message" class="form-status" :class="formStatus.type" role="status" aria-live="polite" aria-atomic="true">
+                <svg v-if="formStatus.type === 'success'" class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg>
+                <svg v-else class="icon" aria-hidden="true"><use href="#icon-exclamation-circle"></use></svg>
+                <span>{{ formStatus.message }}</span>
+              </div>
+            </transition>
           </form>
         </div>
       </section>

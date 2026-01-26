@@ -22,6 +22,8 @@ createApp({
     const formStatus = reactive({ type: '', message: '' });
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjgywnje';
 
+    let formStatusTimeout = null;
+
     // Project Data
     const allProjects = ref([
       {
@@ -93,6 +95,9 @@ createApp({
 
     // Form Submission with better error handling
     const submitForm = async () => {
+      if (formStatusTimeout) {
+        clearTimeout(formStatusTimeout);
+      }
       formStatus.type = '';
       formStatus.message = '';
       formLoading.value = true;
@@ -109,6 +114,11 @@ createApp({
           formStatus.type = 'success';
           formStatus.message = "Message sent successfully! I'll get back to you soon.";
           Object.assign(formData, { name: '', email: '', message: '' });
+
+          formStatusTimeout = setTimeout(() => {
+            formStatus.type = '';
+            formStatus.message = '';
+          }, 5000); // Hide after 5 seconds
         } else {
           formStatus.type = 'error';
           formStatus.message = data.errors?.[0]?.message || 'Failed to send message. Please try again.';
@@ -212,7 +222,7 @@ createApp({
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting && heroVideo.value && !heroVideo.value.src) {
-                heroVideo.value.src = 'videos/hero.mp4';
+                heroVideo.value.src = 'videos/hero2.mp4';
                 heroVideo.value.load();
                 heroObserver.disconnect();
               }
