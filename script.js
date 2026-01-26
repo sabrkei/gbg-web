@@ -23,33 +23,34 @@ createApp({
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjgywnje';
 
     // Project Data
-    const projects = ref([
+    const allProjects = ref([
       {
         title: "The Daily Grind",
         description: "First HTML/CSS project focusing on layout.",
         image: "images/thedailygrindlogo.webp",
         link: "https://github.com/sabrkei/the-daily-grind",
+        linkType: "repo",
       },
       {
         title: "United by Sound",
         description: "UX/UI group project exploring community music.",
         image: "images/unitedbysound.webp",
         link: "https://github.com/sabrkei/united-by-sound",
+        linkType: "repo",
       },
       {
         title: "Football Stats Hub",
         description: "Native JS API project comparing football teams.",
         image: "images/footballstatshublogo.webp",
         link: "https://github.com/sabrkei/football-stats-hub",
+        linkType: "repo",
       },
-    ]);
-
-    const customerProjects = ref([
       {
         title: "NYDS",
         description: "nydancespectacular.com - Dance event in Clearwater, Florida",
         image: "images/nyds.webp",
         link: "https://nydancespectacular.com",
+        linkType: "site",
       }
     ]);
 
@@ -244,8 +245,7 @@ createApp({
       aboutTextSide,
       heroVideo,
       aboutVideo,
-      projects,
-      customerProjects,
+      allProjects,
       formData,
       formLoading,
       formStatus,
