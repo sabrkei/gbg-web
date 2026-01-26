@@ -173,7 +173,7 @@ select {
 [data-theme="light"] .text-side a:hover { color: #66bb6a; }
 [data-theme="light"] .hero-text .pre-heading { color: #81c784; }
 [data-theme="light"] .hero-scroll-prompt { color: #81c784; }
-[data-theme="light"] .video-overlay { background: rgba(0, 0, 0, 0.75); }
+[data-theme="light"] .video-overlay { background: rgba(0, 0, 0, 0.3); }
 
 /* ==========================================================================
    THEME: DARK (Default)
