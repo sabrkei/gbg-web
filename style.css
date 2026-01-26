@@ -535,18 +535,16 @@ h1 {
 .portfolio-column.portfolio-projects {
   background-color: var(--bg-current);
   padding-top: 80px; /* Space for header */
-  padding-bottom: 10px;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
 }
 
 .portfolio-column.portfolio-sites {
   background-color: #0a0f1a;
   padding-top: 10px;
-  margin-top: -40px; /* Overlap effect */
-  padding-top: 50px; /* Compensate for overlap */
+  margin-top: -60px; /* Overlap effect */
+  padding-top: 70px; /* Compensate for overlap */
   z-index: 2;
-  padding-bottom: 40px;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
 }
 
 .portfolio-column .reel-title {
@@ -574,69 +572,80 @@ h1 {
 }
 
 .project-card-new {
-  background: var(--card-bg);
-  border-radius: 12px;
+  background: transparent;
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   flex: 0 0 400px; /* Fixed width for desktop cards */
   width: 400px;
   height: 100%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid var(--border-color);
+  box-shadow: none;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+  border: none;
   scroll-snap-align: center;
+  position: relative;
 }
 
 .project-card-new:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .project-card-new__image-container {
   width: 100%;
-  flex: 1;
-  flex: 2;
-  aspect-ratio: auto;
+  height: 100%;
+  flex: none;
   overflow: hidden;
   background-color: #000;
+  border-radius: 16px;
 }
 
 .project-card-new__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(100%);
-  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: brightness(0.9);
+  transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 .project-card-new:hover .project-card-new__image {
-  transform: scale(1.05);
-  filter: none;
+  transform: scale(1.08);
+  filter: brightness(1);
 }
 
 .project-card-new__content {
-  padding: 20px;
-  padding: 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 20px 20px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  justify-content: flex-end;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+  border-radius: 0 0 16px 16px;
+  z-index: 2;
 }
 
 .project-card-new__title {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 8px;
+  color: #ffffff;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .project-card-new__description {
-  font-size: 0.9rem;
-  color: var(--text-dim);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.5;
-  margin-bottom: 16px;
-  margin-bottom: 12px;
-  flex-grow: 1;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-card-new__link {
@@ -652,6 +661,7 @@ h1 {
   font-size: 0.85rem;
   transition: background-color 0.3s ease;
   align-self: flex-start;
+  backdrop-filter: blur(5px);
 }
 
 .project-card-new__link:hover {
@@ -1348,7 +1358,6 @@ h1 {
 
   .portfolio-column.portfolio-projects {
     padding-top: 20px;
-    padding-bottom: 5px;
     padding-bottom: 20px;
   }
 
@@ -1356,7 +1365,6 @@ h1 {
     padding-top: 5px;
     margin-top: -20px;
     padding-top: 25px;
-    padding-bottom: 25px;
     padding-bottom: 40px;
   }
 
