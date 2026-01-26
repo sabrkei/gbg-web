@@ -154,7 +154,7 @@ select {
   --color-accent: #81c784;
   --color-accent-hover: #66bb6a;
   --border-color: #555555;
-  --header-bg: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  --header-bg: transparent;
   --btn-text: #000000;
   --input-bg: #1a1a1a;
   --text-side-bg: #26332c;
@@ -186,7 +186,7 @@ select {
   --text-main: #ffffff;
   --text-dim: #cbd5e1;
   --border-color: #64748b;
-  --header-bg: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+  --header-bg: transparent;
   --btn-text: #000000;
   --input-bg: #0a0a0a;
   --text-side-bg: #101826;
@@ -196,7 +196,6 @@ select {
 [data-theme="dark"] .icon-grid .icon-skill,
 [data-theme="dark"] .profile-img,
 [data-theme="dark"] .project-img,
-[data-theme="dark"] .site-logo,
 [data-theme="dark"] .hero-video,
 [data-theme="dark"] .hero-logo,
 [data-theme="dark"] dotlottie-wc {
@@ -1411,7 +1410,7 @@ h1 {
   }
 
   body { overflow-x: hidden; }
-  .main-header { padding: 10px 15px; background: rgba(0,0,0,0.9); }
+  .main-header { padding: 10px 15px; background: transparent; }
   .site-logo { height: 45px; }
   .right-group { gap: 8px; }
 
