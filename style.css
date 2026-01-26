@@ -8,19 +8,18 @@
    CSS VARIABLES
    ========================================================================== */
 :root {
-  --color-accent: #0056b3;
-  --color-accent-hover: #004494;
-  --bg-dark: #0f172a;
-  --bg-light: #e2e8f0;
-  --card-bg: #ffffff;
-  --text-main: #1f2937;
-  --text-dim: #4b5563;
-  --bg-current: var(--bg-light);
-  --border-color: #767676;
-  --header-bg: rgba(255, 255, 255, 0.0);
-  --btn-text: #ffffff;
-  --input-bg: #ffffff;
-  --focus-ring: 3px solid var(--color-accent);
+  --color-accent: #60a5fa;
+  --color-accent-hover: #93c5fd;
+  --bg-current: #0f172a;
+  --card-bg: #1e293b;
+  --text-main: #ffffff;
+  --text-dim: #cbd5e1;
+  --border-color: #64748b;
+  --header-bg: transparent;
+  --btn-text: #000000;
+  --input-bg: #0a0a0a;
+  --text-side-bg: #101826;
+  --focus-ring: 3px solid #93c5fd;
   --focus-offset: 2px;
 }
 
@@ -143,70 +142,22 @@ select {
 }
 
 /* ==========================================================================
-   THEME: LIGHT
+   GRAYSCALE FILTERS
    ========================================================================== */
-[data-theme="light"] {
-  --bg-light: #000000;
-  --bg-current: var(--bg-light);
-  --text-main: #ffffff;
-  --text-dim: #e0e0e0;
-  --card-bg: #1a221e;
-  --color-accent: #81c784;
-  --color-accent-hover: #66bb6a;
-  --border-color: #555555;
-  --header-bg: transparent;
-  --btn-text: #000000;
-  --input-bg: #1a1a1a;
-  --text-side-bg: #26332c;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  background-color: var(--bg-light);
-  color: var(--text-main);
-}
-
-[data-theme="light"] .section:nth-child(1) { background-color: #000000; }
-[data-theme="light"] .section:nth-child(2) { background-color: #121a16; }
-[data-theme="light"] .section:nth-child(3) { background-color: #1c2621; }
-[data-theme="light"] .section:nth-child(4) { background-color: var(--text-side-bg); }
-[data-theme="light"] .section:nth-child(5) { background-color: #1c2621; }
-[data-theme="light"] .section:nth-child(6) { background-color: #121a16; }
-
-[data-theme="light"] .text-side a:hover { color: #66bb6a; }
-[data-theme="light"] .hero-text .pre-heading { color: #81c784; }
-[data-theme="light"] .hero-scroll-prompt { color: #81c784; }
-[data-theme="light"] .video-overlay { background: rgba(0, 0, 0, 0.3); }
-
-/* ==========================================================================
-   THEME: DARK (Default)
-   ========================================================================== */
-[data-theme="dark"] {
-  --color-accent: #60a5fa;
-  --color-accent-hover: #93c5fd;
-  --bg-current: #0f172a;
-  --card-bg: #1e293b;
-  --text-main: #ffffff;
-  --text-dim: #cbd5e1;
-  --border-color: #64748b;
-  --header-bg: transparent;
-  --btn-text: #000000;
-  --input-bg: #0a0a0a;
-  --text-side-bg: #101826;
-  --focus-ring: 3px solid #93c5fd;
-}
-
-[data-theme="dark"] .profile-img,
-[data-theme="dark"] .project-img,
-[data-theme="dark"] .hero-video,
-[data-theme="dark"] .hero-logo,
-[data-theme="dark"] dotlottie-wc {
-  filter: grayscale(100%) !important;
+.profile-img,
+.project-img,
+.hero-video,
+.hero-logo,
+dotlottie-wc {
+  filter: grayscale(100%);
 }
 
 /* Keep family/about video in full color */
-[data-theme="dark"] .about-video {
+.about-video {
   filter: none;
 }
 
-[data-theme="dark"] .video-overlay {
+.video-overlay {
   background: rgba(0, 0, 0, 0.4);
 }
 
@@ -223,8 +174,7 @@ select {
   align-items: center;
   padding: 15px 40px;
   padding-top: max(15px, env(safe-area-inset-top));
-  background: var(--header-bg);
-  backdrop-filter: blur(20px);
+  background: transparent;
   transition: transform 0.4s ease;
 }
 
@@ -647,29 +597,6 @@ h1 {
 
 .project-card-new__link:hover {
   background-color: var(--color-accent-hover);
-}
-
-/* Light theme adjustments for new cards */
-[data-theme="light"] .project-card-new {
-  background: var(--card-bg);
-  border-color: var(--border-color);
-}
-
-[data-theme="light"] .project-card-new__title {
-  color: var(--text-main);
-}
-
-[data-theme="light"] .project-card-new__description {
-  color: var(--text-dim);
-}
-
-[data-theme="light"] .project-card-new__link {
-  background: var(--color-accent);
-  color: var(--btn-text);
-}
-
-[data-theme="light"] .project-card-new__link:hover {
-  background: var(--color-accent-hover);
 }
 
 /* ==========================================================================
@@ -1395,7 +1322,8 @@ h1 {
   }
 
   #portfolio.section {
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 80px;
   }
 
   .portfolio-grid {

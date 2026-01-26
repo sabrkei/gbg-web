@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -308,7 +308,7 @@
               <textarea id="message" name="message" v-model="formData.message" placeholder="How can I help you?" rows="5" required aria-required="true"></textarea>
             </div>
             <button type="submit" class="submit-btn" :class="{ loading: formLoading }" :disabled="formLoading" :aria-busy="formLoading">
-              <span class="btn-text"><svg class="icon" aria-hidden="true"><use href="#icon-paper-plane"></use></svg> Send Message</span>
+              <span class="btn-text"><svg class="icon" aria-hidden="true"><use href="#icon-paper-plane"></use></svg> Send</span>
               <span class="spinner" aria-hidden="true"></span>
             </button>
             <transition name="fade">
