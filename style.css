@@ -451,13 +451,13 @@ dotlottie-wc {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: sepia(0.3) saturate(0.6) contrast(1.1) brightness(1.1);
+  filter: saturate(1.4) contrast(1.1);
 }
 
 .video-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.244);
+  background: rgba(32, 28, 65, 0.15);
   z-index: 1;
 }
 
