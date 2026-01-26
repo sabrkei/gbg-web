@@ -210,7 +210,7 @@ dotlottie-wc {
 }
 
 .header-socials a {
-  color: #b3b3b3;
+  color: #ffffff;
   transition: color 0.3s ease;
   display: inline-flex;
   align-items: center;
@@ -524,14 +524,16 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 40px;
+  padding: 10px 40px;
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .portfolio-column.portfolio-projects {
-  background-color: #000000;
+  background-color: var(--bg-current);
   padding-top: 80px; /* Space for header */
   padding-bottom: 10px;
 }
@@ -539,6 +541,9 @@ h1 {
 .portfolio-column.portfolio-sites {
   background-color: #0a0f1a;
   padding-top: 10px;
+  margin-top: -40px; /* Overlap effect */
+  padding-top: 50px; /* Compensate for overlap */
+  z-index: 2;
   padding-bottom: 40px;
 }
 
@@ -646,6 +651,13 @@ h1 {
 
 .project-card-new__link:hover {
   background-color: var(--color-accent-hover);
+}
+
+/* Inverted button style for Site Builds */
+.portfolio-sites .project-card-new__link {
+  background: #000000;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
 }
 
 /* ==========================================================================
@@ -1336,6 +1348,8 @@ h1 {
 
   .portfolio-column.portfolio-sites {
     padding-top: 5px;
+    margin-top: -20px;
+    padding-top: 25px;
     padding-bottom: 25px;
   }
 
