@@ -1086,7 +1086,6 @@ h1 {
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #66bb6a 100%);
   background-color: var(--color-accent);
   color: var(--btn-text);
   border: none;
@@ -1097,7 +1096,6 @@ h1 {
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: transform 0.2s ease, box-shadow 0.3s ease, opacity 0.2s ease;
   transition: transform 0.2s ease, box-shadow 0.3s ease, opacity 0.2s ease, background-color 0.3s ease;
   position: relative;
   overflow: hidden;
