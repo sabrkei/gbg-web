@@ -57,6 +57,13 @@ createApp({
         link: "https://nydancespectacular.com",
         linkType: "site",
       }
+      ,{
+        title: "Locksafe",
+        description: "locksafe.se - Swedish security company",
+        image: "images/locksafe_cinema-1.webp",
+        link: "https://locksafe.se",
+        linkType: "site",
+      }
     ]);
 
     // Scroll Handling with passive listener optimization
