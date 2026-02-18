@@ -1400,3 +1400,23 @@ h1 {
   .main-header { position: relative; }
   .scroll-prompt { display: none; }
 }
+
+/* About Section Mobile Layout */
+.section-content--split {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-video-side {
+  order: -1;
+  min-height: 300px;
+}
+
+@media (min-width: 768px) {
+  .section-content--split {
+    flex-direction: row;
+    height: 100%;
+    overflow: hidden;
+  }
+  .about-video-side { order: 0; }
+}
