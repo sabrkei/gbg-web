@@ -20,7 +20,10 @@
       "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" status)",
       "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" diff HEAD)",
       "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" add index.html)",
-      "Bash(git -C:*)"
+      "Bash(git -C:*)",
+      "WebFetch(domain:www.googleapis.com)",
+      "Bash(echo:*)",
+      "Bash(powershell -Command:*)"
     ]
   }
 }
