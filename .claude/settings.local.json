@@ -7,7 +7,20 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(dir:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" log --oneline -10)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" show a241d58:index.html)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" show --stat a241d58)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" show eca4fed:style.css)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" log --all --oneline --format=\"%H %s\")",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" stash list)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" log --all --oneline)",
+      "Bash(GIT_DIR=\"C:/Users/scott/Desktop/gbg-web/.git\" GIT_WORK_TREE=\"C:/Users/scott/Desktop/gbg-web\" git log:*)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" show --stat 5d7c358)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" status)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" diff HEAD)",
+      "Bash(git -C \"C:/Users/scott/Desktop/gbg-web\" add index.html)",
+      "Bash(git -C:*)"
     ]
   }
 }
