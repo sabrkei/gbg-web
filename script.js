@@ -47,14 +47,21 @@ createApp({
         link: "https://github.com/sabrkei/football-stats-hub",
         linkType: "repo",
       },
+      {
+        title: "Historical Currency Exchange Rates",
+        description: "Vue router project fetching historical exchange rates.",
+        image: "images/currencyexchange.webp",
+        link: "https://github.com/sabrkei/currencyexchange",
+        linkType: "repo",
+      },
     ]);
 
     const siteBuilds = ref([
       {
-        title: "NYDS",
-        description: "nydancespectacular.com - Dance event in Clearwater, Florida",
+        title: "Dance Spectacular",
+        description: "dancespectacular.us - Dance event in Clearwater, Florida",
         image: "images/nyds.webp",
-        link: "https://nydancespectacular.com",
+        link: "https://dancespectacular.us",
         linkType: "site",
       }
       ,{
