@@ -35,7 +35,7 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: var(--bg-current);
   color: var(--text-main);
   font-size: 1rem;
@@ -261,7 +261,7 @@ select {
 
 .home-copyright {
   font-size: 0.62rem;
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.45);
   letter-spacing: 1.5px;
   text-transform: uppercase;
   text-align: center;
@@ -323,6 +323,7 @@ select {
   letter-spacing: 1.5px;
   text-transform: uppercase;
   padding: 8px 12px;
+  min-height: 44px;
   border-radius: 8px;
   transition: color 0.2s, background 0.2s;
   -webkit-tap-highlight-color: transparent;
@@ -763,7 +764,7 @@ select {
 }
 
 .contact-socials a {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.45);
   padding: 8px;
   min-width: 44px;
   min-height: 44px;
@@ -837,8 +838,12 @@ select {
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: var(--color-accent);
-  outline: none;
   background-color: transparent;
+}
+
+.contact-form input:focus:not(:focus-visible),
+.contact-form textarea:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .contact-form textarea {
