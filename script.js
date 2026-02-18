@@ -1,76 +1,79 @@
-const { createApp, ref, reactive } = Vue;
+const { createApp, ref, reactive, nextTick, onMounted, onUnmounted } = Vue;
 
 createApp({
   setup() {
-    // App navigation state
     const activeSection = ref(null);
+    let lastFocusedElement = null;
 
     const openSection = (name) => {
+      lastFocusedElement = document.activeElement;
       activeSection.value = name;
+      nextTick(() => document.querySelector('.back-btn')?.focus());
     };
 
     const goHome = () => {
       activeSection.value = null;
+      nextTick(() => lastFocusedElement?.focus());
     };
 
-    // Form State
+    const onKeydown = (e) => {
+      if (e.key === 'Escape' && activeSection.value) goHome();
+    };
+
+    onMounted(() => window.addEventListener('keydown', onKeydown));
+    onUnmounted(() => window.removeEventListener('keydown', onKeydown));
+
+    // Form state
     const formData = reactive({ name: '', email: '', message: '' });
     const formLoading = ref(false);
     const formStatus = reactive({ type: '', message: '' });
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjgywnje';
-
     let formStatusTimeout = null;
 
-    // Project Data
+    // Project data
     const personalProjects = ref([
       {
-        title: "The Daily Grind",
-        description: "First HTML/CSS project focusing on layout.",
-        image: "images/thedailygrindlogo.webp",
-        link: "https://github.com/sabrkei/the-daily-grind",
-        linkType: "repo",
+        title: 'The Daily Grind',
+        description: 'First HTML/CSS project focusing on layout.',
+        image: 'images/thedailygrindlogo.webp',
+        link: 'https://github.com/sabrkei/the-daily-grind',
       },
       {
-        title: "United by Sound",
-        description: "UX/UI group project exploring community music.",
-        image: "images/unitedbysound.webp",
-        link: "https://github.com/sabrkei/united-by-sound",
-        linkType: "repo",
+        title: 'United by Sound',
+        description: 'UX/UI group project exploring community music.',
+        image: 'images/unitedbysound.webp',
+        link: 'https://github.com/sabrkei/united-by-sound',
       },
       {
-        title: "Football Stats Hub",
-        description: "Native JS API project comparing football teams.",
-        image: "images/footballstatshublogo.webp",
-        link: "https://github.com/sabrkei/football-stats-hub",
-        linkType: "repo",
+        title: 'Football Stats Hub',
+        description: 'Native JS API project comparing football teams.',
+        image: 'images/footballstatshublogo.webp',
+        link: 'https://github.com/sabrkei/football-stats-hub',
       },
       {
-        title: "Historical Currency Exchange Rates",
-        description: "Vue router project fetching historical exchange rates.",
-        image: "images/currencyexchange.webp",
-        link: "https://github.com/sabrkei/currencyexchange",
-        linkType: "repo",
+        title: 'Historical Currency Exchange Rates',
+        description: 'Vue router project fetching historical exchange rates.',
+        image: 'images/currencyexchange.webp',
+        link: 'https://github.com/sabrkei/currencyexchange',
       },
     ]);
 
     const siteBuilds = ref([
       {
-        title: "Dance Spectacular",
-        description: "dancespectacular.us - Dance event in Clearwater, Florida",
-        image: "images/nyds.webp",
-        link: "https://dancespectacular.us",
-        linkType: "site",
+        title: 'Dance Spectacular',
+        description: 'dancespectacular.us — Dance event in Clearwater, Florida',
+        image: 'images/nyds.webp',
+        link: 'https://dancespectacular.us',
       },
       {
-        title: "Locksafe",
-        description: "locksafe.se - Swedish security company",
-        image: "images/locksafe_cinema-1.webp",
-        link: "https://locksafe.se",
-        linkType: "site",
+        title: 'Locksafe',
+        description: 'locksafe.se — Swedish security company',
+        image: 'images/locksafe_cinema-1.webp',
+        link: 'https://locksafe.se',
       },
     ]);
 
-    // Form Submission
+    // Form submission
     const submitForm = async () => {
       if (formStatusTimeout) clearTimeout(formStatusTimeout);
       formStatus.type = '';
@@ -80,8 +83,8 @@ createApp({
       try {
         const response = await fetch(FORMSPREE_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(formData)
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(formData),
         });
         const data = await response.json();
 
