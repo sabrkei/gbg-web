@@ -35,7 +35,7 @@ html {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background-color: var(--bg-current);
   color: var(--text-main);
   font-size: 1rem;
