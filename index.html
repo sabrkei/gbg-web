@@ -92,11 +92,11 @@
     .icon{width:1em;height:1em;fill:currentColor;vertical-align:-0.125em}
     .icon-lg{width:1.5em;height:1.5em}
     .icon-xl{width:2em;height:2em}
+    [v-cloak] { display: none !important; }
   </style>
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="style.css"></noscript>
+  <link rel="stylesheet" href="style.css?v=1.0">
 
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap" media="print" onload="this.media='all'">
@@ -104,7 +104,7 @@
 
   <!-- Vue & App Script -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="script.js?v=1.0" defer></script>
 </head>
 
 <body>
@@ -188,7 +188,7 @@
 
     <!-- SECTION VIEW (slides up over home screen) -->
     <transition name="app-open">
-      <div class="section-view" v-if="activeSection" role="main">
+      <div class="section-view" v-if="activeSection" role="main" v-cloak>
 
         <!-- Section Nav Bar -->
         <nav class="section-nav" aria-label="Section navigation">

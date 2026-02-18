@@ -4,7 +4,7 @@ A modern, responsive portfolio website for Scott, a front-end developer and desi
 
 ## Overview
 
-This is a single-page portfolio application built with Vue 3, featuring smooth scroll-snap navigation, theme switching, and interactive 3D animations.
+This is a single-page portfolio application built with Vue 3, featuring an app-like interface with a dock navigation system, smooth transitions, and a clean dark mode aesthetic.
 
 ## Tech Stack
 
@@ -16,16 +16,11 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 
 ## Features
 
-- **Bento Grid Portfolio** - Modern asymmetric tile layout with 3D tilt effects
-- Full-viewport scroll-snap sections
-- Dark/Light theme toggle with smooth CSS transitions
-- Auto-hiding header on scroll with hover reveal
-- Looping background videos
-- Interactive project cards with mouse-tracking 3D transforms
+- **App Dock Navigation** - Intuitive icon-based navigation menu
+- **SPA Architecture** - Seamless section transitions without page reloads
 - Fully responsive design (mobile-first)
 - Functional contact form via Formspree
 - Native PDF CV viewer (no third-party dependencies)
-- Section fade-in animations on scroll
 
 ## Performance Optimizations
 
@@ -73,12 +68,11 @@ This is a single-page portfolio application built with Vue 3, featuring smooth s
 
 ## Sections
 
-1. **Hero** - Full-screen video background with animated logo
-2. **Portfolio** - Bento grid personal projects showcase
-3. **Customer Projects** - Bento grid client work showcase
-4. **Skills** - Technical skillset icons + embedded CV viewer
-5. **About Me** - Personal story with looping family video
-6. **Contact** - Split-layout contact form and social links
+1. **Home** - Hero screen with app dock
+2. **Portfolio** - List view of personal and client projects
+3. **About Me** - Personal story with split-screen video layout
+4. **Stack & CV** - Technical skills grid and embedded PDF CV
+5. **Contact** - Integrated contact form
 
 ## Getting Started
 
@@ -99,25 +93,6 @@ The contact form uses [Formspree](https://formspree.io) for handling submissions
 - Firefox
 - Safari
 - Edge
-
-## Customization
-
-### Theme Colors
-
-Edit CSS variables in `style.css`:
-
-```css
-:root {
-  --color-accent: #0056b3;  /* Royal Blue accent (dark theme) */
-  --bg-dark: #0f172a;       /* Deep Slate background */
-  --bg-light: #e2e8f0;      /* Slate 200 background */
-}
-
-[data-theme="light"] {
-  --color-accent: #81c784;  /* Soft Green accent (light theme) */
-  --bg-light: #000000;      /* Black background */
-}
-```
 
 ### Adding Projects
 
