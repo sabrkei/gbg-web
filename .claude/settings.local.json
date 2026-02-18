@@ -23,7 +23,10 @@
       "Bash(git -C:*)",
       "WebFetch(domain:www.googleapis.com)",
       "Bash(echo:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "WebFetch(domain:unpkg.com)",
+      "Bash(python3:*)",
+      "Bash(node:*)"
     ]
   }
 }
