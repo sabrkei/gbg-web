@@ -135,6 +135,7 @@
       <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z"/>
     </symbol>
     <symbol id="icon-user" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></symbol>
+    <symbol id="icon-check-copy" viewBox="0 0 448 512"><path d="M208 0L332.1 0c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9L448 336c0 26.5-21.5 48-48 48l-192 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48zM48 128l80 0 0 64-64 0 0 256 192 0 0-32 64 0 0 48c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 176c0-26.5 21.5-48 48-48z"/></symbol>
     <symbol id="icon-layers" viewBox="0 0 576 512"><path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z"/></symbol>
   </svg>
 
@@ -237,10 +238,16 @@
                   <div class="project-row__stack" aria-hidden="true">
                     <img v-for="tech in project.stack" :key="tech.name" :src="tech.icon" :alt="tech.name" :title="tech.name" class="stack-icon" width="20" height="20" loading="lazy">
                   </div>
-                  <a :href="project.link" target="_blank" rel="noopener noreferrer" class="project-row__link" :aria-label="project.title + ' — view on GitHub'">
-                    <span class="project-row__tag" aria-hidden="true">GitHub</span>
-                    <svg class="icon icon-lg" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
-                  </a>
+                  <div class="project-row__links">
+                    <a :href="project.link" target="_blank" rel="noopener noreferrer" class="project-row__link" :aria-label="project.title + ' — view on GitHub'">
+                      <span class="project-row__tag" aria-hidden="true">GitHub</span>
+                      <svg class="icon icon-lg" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                    </a>
+                    <a v-if="project.liveUrl" :href="project.liveUrl" target="_blank" rel="noopener noreferrer" class="project-row__link project-row__link--live" :aria-label="project.title + ' — view live site'">
+                      <span class="project-row__tag" aria-hidden="true">Live Site</span>
+                      <svg class="icon icon-lg" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                    </a>
+                  </div>
                 </li>
               </ul>
             </section>
@@ -281,19 +288,42 @@
                   v-for="(project, index) in npmBuilds"
                   :key="project.title"
                   class="project-row"
+                  :style="project.image ? { '--thumb': 'url(' + project.image + ')' } : {}"
                 >
                   <span class="project-row__num" aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</span>
                   <div class="project-row__info">
                     <h3 class="project-row__title">{{ project.title }}</h3>
-                    <p class="project-row__desc">{{ project.description }}</p>
+                    <div class="project-row__desc-row">
+                      <p class="project-row__desc">{{ project.description }}</p>
+                      <div v-if="project.npmCommand" class="project-row__terminal">
+                        <span class="terminal-prompt" aria-hidden="true">$</span>
+                        <code class="terminal-cmd">{{ project.npmCommand }}</code>
+                        <button
+                          class="terminal-copy"
+                          type="button"
+                          @click.stop="copyCommand(project.npmCommand)"
+                          :aria-label="copiedCmd === project.npmCommand ? 'Copied!' : 'Copy command'"
+                        >
+                          <svg v-if="copiedCmd !== project.npmCommand" class="icon" aria-hidden="true"><use href="#icon-check-copy"></use></svg>
+                          <svg v-else class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg>
+                          <span class="terminal-copy__label">{{ copiedCmd === project.npmCommand ? 'Copied!' : 'Copy' }}</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                   <div class="project-row__stack" aria-hidden="true">
                     <img v-for="tech in project.stack" :key="tech.name" :src="tech.icon" :alt="tech.name" :title="tech.name" class="stack-icon" width="20" height="20" loading="lazy">
                   </div>
-                  <a :href="project.link" target="_blank" rel="noopener noreferrer" class="project-row__link" :aria-label="project.title + ' — view on npm'">
-                    <span class="project-row__tag" aria-hidden="true">npm</span>
-                    <svg class="icon icon-lg" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
-                  </a>
+                  <div class="project-row__links">
+                    <a v-if="project.repo" :href="project.repo" target="_blank" rel="noopener noreferrer" class="project-row__link" :aria-label="project.title + ' — view on GitHub'">
+                      <span class="project-row__tag" aria-hidden="true">GitHub</span>
+                      <svg class="icon icon-lg" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                    </a>
+                    <a :href="project.link" target="_blank" rel="noopener noreferrer" class="project-row__link" :aria-label="project.title + ' — view on npm'">
+                      <span class="project-row__tag" aria-hidden="true">npm</span>
+                      <svg class="icon icon-lg" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                    </a>
+                  </div>
                 </li>
               </ul>
             </section>

@@ -39,6 +39,7 @@ createApp({
         description: 'First HTML/CSS project focusing on layout.',
         image: 'images/thedailygrindlogo.webp',
         link: 'https://github.com/sabrkei/the-daily-grind',
+        liveUrl: 'https://sabrkei.github.io/the-daily-grind',
         stack: [
           { name: 'HTML5',  icon: `${DI}/html5/html5-original.svg` },
           { name: 'CSS3',   icon: `${DI}/css3/css3-original.svg` },
@@ -49,6 +50,7 @@ createApp({
         description: 'UX/UI group project exploring community music.',
         image: 'images/unitedbysound.webp',
         link: 'https://github.com/sabrkei/united-by-sound',
+        liveUrl: 'https://www.figma.com/proto/vZKmLu3fBcpQJ06vfaQ8Lb/Festival-projekt?node-id=441-627&starting-point-node-id=441%3A627&t=yLvrFnAjrCLXzmut-1',
         stack: [
           { name: 'Figma', icon: `${DI}/figma/figma-original.svg` },
         ],
@@ -58,6 +60,7 @@ createApp({
         description: 'Native JS API project comparing football teams.',
         image: 'images/footballstatshublogo.webp',
         link: 'https://github.com/sabrkei/football-stats-hub',
+        liveUrl: 'https://sabrkei.github.io/football-stats-hub',
         stack: [
           { name: 'JavaScript', icon: `${DI}/javascript/javascript-original.svg` },
           { name: 'HTML5',      icon: `${DI}/html5/html5-original.svg` },
@@ -69,6 +72,7 @@ createApp({
         description: 'Vue router project fetching historical exchange rates.',
         image: 'images/currencyexchange.webp',
         link: 'https://github.com/sabrkei/currencyexchange',
+        liveUrl: 'https://sabrkei.github.io/currencyexchange',
         stack: [
           { name: 'Vue.js',     icon: `${DI}/vuejs/vuejs-original.svg` },
           { name: 'JavaScript', icon: `${DI}/javascript/javascript-original.svg` },
@@ -105,13 +109,37 @@ createApp({
       {
         title: 'g-client-handover',
         description: 'A CLI tool for generating structured client handover documents for web projects.',
+        image: 'images/g-client-handover.webp',
         link: 'https://www.npmjs.com/package/g-client-handover',
+        repo: 'https://github.com/sabrkei/gemini-client-handover',
+        npmCommand: 'npx g-client-handover',
         stack: [
           { name: 'Node.js',    icon: `${DI}/nodejs/nodejs-original.svg` },
           { name: 'JavaScript', icon: `${DI}/javascript/javascript-original.svg` },
         ],
       },
     ]);
+
+    // Copy command state
+    const copiedCmd = ref(null);
+
+    const copyCommand = async (cmd) => {
+      try {
+        await navigator.clipboard.writeText(cmd);
+        copiedCmd.value = cmd;
+        setTimeout(() => { copiedCmd.value = null; }, 2000);
+      } catch {
+        // fallback: select a temp textarea
+        const el = document.createElement('textarea');
+        el.value = cmd;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        copiedCmd.value = cmd;
+        setTimeout(() => { copiedCmd.value = null; }, 2000);
+      }
+    };
 
     // Form submission
     const submitForm = async () => {
@@ -159,6 +187,8 @@ createApp({
       formLoading,
       formStatus,
       submitForm,
+      copiedCmd,
+      copyCommand,
     };
   },
 }).mount('#app');
