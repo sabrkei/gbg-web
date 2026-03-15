@@ -1169,7 +1169,10 @@ select {
   .project-row__num { font-size: 0.6rem; }
   .project-row__title { font-size: 0.9rem; }
   .project-row__desc { font-size: 0.72rem; }
-  .project-row__tag { display: none; }
+  .project-row__desc-row { flex-wrap: wrap; }
+  .project-row__terminal { flex-shrink: 1; }
+  .project-row__tag { display: block; font-size: 0.5rem; letter-spacing: 1px; }
+  .project-row__link { flex-direction: column-reverse; gap: 2px; align-items: center; }
   .project-row__stack { gap: 5px; }
   .stack-icon { width: 16px; height: 16px; }
 
