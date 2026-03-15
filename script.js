@@ -5,14 +5,18 @@ createApp({
     const activeSection = ref(null);
     let lastFocusedElement = null;
 
+    const VALID_SECTIONS = ['portfolio', 'about', 'stackcv', 'contact'];
+
     const openSection = (name) => {
       lastFocusedElement = document.activeElement;
       activeSection.value = name;
+      history.pushState(null, '', '#' + name);
       nextTick(() => document.querySelector('.back-btn')?.focus());
     };
 
     const goHome = () => {
       activeSection.value = null;
+      history.pushState(null, '', window.location.pathname + window.location.search);
       nextTick(() => lastFocusedElement?.focus());
     };
 
@@ -20,8 +24,27 @@ createApp({
       if (e.key === 'Escape' && activeSection.value) goHome();
     };
 
-    onMounted(() => window.addEventListener('keydown', onKeydown));
-    onUnmounted(() => window.removeEventListener('keydown', onKeydown));
+    const onPopState = () => {
+      const hash = window.location.hash.slice(1);
+      if (VALID_SECTIONS.includes(hash)) {
+        activeSection.value = hash;
+        nextTick(() => document.querySelector('.back-btn')?.focus());
+      } else {
+        activeSection.value = null;
+      }
+    };
+
+    onMounted(() => {
+      window.addEventListener('keydown', onKeydown);
+      window.addEventListener('popstate', onPopState);
+      const hash = window.location.hash.slice(1);
+      if (VALID_SECTIONS.includes(hash)) activeSection.value = hash;
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('keydown', onKeydown);
+      window.removeEventListener('popstate', onPopState);
+    });
 
     // Form state
     const formData = reactive({ name: '', email: '', message: '' });
