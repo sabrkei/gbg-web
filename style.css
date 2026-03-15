@@ -29,14 +29,14 @@
 
 html {
   height: 100%;
-  background-color: var(--bg-current);
+  background-color: #000;
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) var(--bg-current);
 }
 
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: var(--bg-current);
+  background-color: #000;
   color: var(--text-main);
   font-size: 1rem;
   line-height: 1.6;
@@ -148,6 +148,7 @@ select {
   justify-content: center;
   padding: 40px 20px;
   gap: 48px;
+  background: linear-gradient(to bottom, #1a4a7a 0%, #000 100%);
 }
 
 .home-logo {
@@ -238,13 +239,13 @@ select {
 .home-socials {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   margin-top: -16px;
 }
 
 .home-socials a {
   color: rgba(255, 255, 255, 0.35);
-  padding: 10px;
+  padding: 14px 18px;
   min-width: 44px;
   min-height: 44px;
   display: inline-flex;
@@ -410,7 +411,7 @@ select {
 
 .project-row {
   display: grid;
-  grid-template-columns: 64px 1fr auto;
+  grid-template-columns: 64px 1fr auto auto;
   align-items: center;
   gap: 32px;
   padding: 28px 48px;
@@ -421,36 +422,33 @@ select {
   cursor: default;
 }
 
-/* Project image — always visible in greyscale, turns to colour on hover */
+/* Project image — always visible in greyscale, turns to colour and zooms on hover */
 .project-row::before {
   content: '';
   position: absolute;
   inset: 0;
   background: var(--thumb) center / cover no-repeat;
-  opacity: 0.14;
+  opacity: 0.18;
   filter: grayscale(100%);
-  transition: opacity 0.65s ease, filter 0.7s ease;
+  transform: scale(1);
+  transition: opacity 0.7s ease, filter 0.7s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 0;
 }
 
-/* Dark overlay — only on hover, keeps text readable over the colour image */
+/* Dark overlay — always present to keep text readable */
 .project-row::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(10, 15, 28, 0.78);
-  opacity: 0;
-  transition: opacity 0.65s ease;
+  background: rgba(10, 15, 28, 0.6);
+  opacity: 1;
   z-index: 0;
 }
 
 .project-row:hover::before {
   opacity: 1;
   filter: grayscale(0%);
-}
-
-.project-row:hover::after {
-  opacity: 1;
+  transform: scale(1.08);
 }
 
 .project-row:hover {
@@ -510,6 +508,27 @@ select {
 
 .project-row:hover .project-row__desc {
   color: rgba(255, 255, 255, 0.65);
+}
+
+/* Tech stack icons */
+.project-row__stack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.stack-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+  filter: grayscale(30%);
+}
+
+.project-row:hover .stack-icon {
+  opacity: 0.9;
+  filter: grayscale(0%);
 }
 
 /* Arrow link */
@@ -1067,11 +1086,13 @@ select {
   .portfolio-content { padding: 16px 12px 36px; gap: 28px; }
 
   .portfolio-section-header { padding: 20px 18px 14px; }
-  .project-row { padding: 18px 18px; gap: 14px; grid-template-columns: 44px 1fr auto; }
+  .project-row { padding: 18px 18px; gap: 10px; grid-template-columns: 44px 1fr auto auto; }
   .project-row__num { font-size: 0.6rem; }
   .project-row__title { font-size: 0.9rem; }
   .project-row__desc { font-size: 0.72rem; }
   .project-row__tag { display: none; }
+  .project-row__stack { gap: 5px; }
+  .stack-icon { width: 16px; height: 16px; }
 
   .about-text-side { padding: 24px 5% 36px; }
   .about-text-side h1 { margin-bottom: 18px; }

@@ -31,30 +31,48 @@ createApp({
     let formStatusTimeout = null;
 
     // Project data
+    const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
+
     const personalProjects = ref([
       {
         title: 'The Daily Grind',
         description: 'First HTML/CSS project focusing on layout.',
         image: 'images/thedailygrindlogo.webp',
         link: 'https://github.com/sabrkei/the-daily-grind',
+        stack: [
+          { name: 'HTML5',  icon: `${DI}/html5/html5-original.svg` },
+          { name: 'CSS3',   icon: `${DI}/css3/css3-original.svg` },
+        ],
       },
       {
         title: 'United by Sound',
         description: 'UX/UI group project exploring community music.',
         image: 'images/unitedbysound.webp',
         link: 'https://github.com/sabrkei/united-by-sound',
+        stack: [
+          { name: 'Figma', icon: `${DI}/figma/figma-original.svg` },
+        ],
       },
       {
         title: 'Football Stats Hub',
         description: 'Native JS API project comparing football teams.',
         image: 'images/footballstatshublogo.webp',
         link: 'https://github.com/sabrkei/football-stats-hub',
+        stack: [
+          { name: 'JavaScript', icon: `${DI}/javascript/javascript-original.svg` },
+          { name: 'HTML5',      icon: `${DI}/html5/html5-original.svg` },
+          { name: 'CSS3',       icon: `${DI}/css3/css3-original.svg` },
+        ],
       },
       {
         title: 'Historical Currency Exchange Rates',
         description: 'Vue router project fetching historical exchange rates.',
         image: 'images/currencyexchange.webp',
         link: 'https://github.com/sabrkei/currencyexchange',
+        stack: [
+          { name: 'Vue.js',     icon: `${DI}/vuejs/vuejs-original.svg` },
+          { name: 'JavaScript', icon: `${DI}/javascript/javascript-original.svg` },
+        ],
       },
     ]);
 
@@ -64,12 +82,34 @@ createApp({
         description: 'dancespectacular.us — Dance event in Clearwater, Florida',
         image: 'images/nyds.webp',
         link: 'https://dancespectacular.us',
+        stack: [
+          { name: 'HTML5',      icon: `${DI}/html5/html5-original.svg` },
+          { name: 'CSS3',       icon: `${DI}/css3/css3-original.svg` },
+          { name: 'JavaScript', icon: `${DI}/javascript/javascript-original.svg` },
+        ],
       },
       {
         title: 'Locksafe',
         description: 'locksafe.se — Swedish security company',
         image: 'images/locksafe_cinema-1.webp',
         link: 'https://locksafe.se',
+        stack: [
+          { name: 'HTML5',      icon: `${DI}/html5/html5-original.svg` },
+          { name: 'CSS3',       icon: `${DI}/css3/css3-original.svg` },
+          { name: 'JavaScript', icon: `${DI}/javascript/javascript-original.svg` },
+        ],
+      },
+    ]);
+
+    const npmBuilds = ref([
+      {
+        title: 'g-client-handover',
+        description: 'A CLI tool for generating structured client handover documents for web projects.',
+        link: 'https://www.npmjs.com/package/g-client-handover',
+        stack: [
+          { name: 'Node.js',    icon: `${DI}/nodejs/nodejs-original.svg` },
+          { name: 'JavaScript', icon: `${DI}/javascript/javascript-original.svg` },
+        ],
       },
     ]);
 
@@ -114,6 +154,7 @@ createApp({
       goHome,
       personalProjects,
       siteBuilds,
+      npmBuilds,
       formData,
       formLoading,
       formStatus,
