@@ -269,55 +269,6 @@ select {
   margin-top: -28px;
 }
 
-.home-bio {
-  max-width: 600px;
-  padding: 32px 24px 40px;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: 16px;
-}
-
-.home-bio p {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.55);
-  line-height: 1.7;
-  margin-bottom: 12px;
-}
-
-.home-bio p a {
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration: underline;
-}
-
-.home-share {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 16px;
-  font-size: 0.72rem;
-}
-
-.home-share__label {
-  color: rgba(255, 255, 255, 0.4);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-.home-share__link {
-  color: rgba(255, 255, 255, 0.55);
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 3px 10px;
-  border-radius: 20px;
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.home-share__link:hover {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
 /* ==========================================================================
    SECTION VIEW
    ========================================================================== */
