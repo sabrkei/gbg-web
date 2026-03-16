@@ -763,20 +763,6 @@ select {
 /* ==========================================================================
    CV SECTION
    ========================================================================== */
-.cv-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-}
-
-.cv-iframe {
-  width: 100%;
-  height: 420px;
-  border: none;
-  display: block;
-}
-
 .cv-controls {
   position: absolute;
   top: 10px;

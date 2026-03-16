@@ -12,7 +12,6 @@ const PRECACHE_ASSETS = [
   '/images/icon-192.png',
   '/images/icon-512.png',
   '/images/gbg-web.webp',
-  '/images/hero-poster.webp',
   '/images/profilephoto.webp',
   '/images/icon-js.webp',
   '/images/icon-vuejs.webp',
