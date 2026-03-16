@@ -47,6 +47,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="geo.region" content="SE-O">
   <meta name="geo.placename" content="Gothenburg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/icon-180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/icon-152.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/icon-144.png">
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -186,6 +190,15 @@
   <!-- Vue & App -->
   <script src="vue.global.prod.js" defer></script>
   <script src="script.js" defer></script>
+
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
 </head>
 
 <body>
