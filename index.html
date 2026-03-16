@@ -31,7 +31,7 @@
   <meta property="og:site_name" content="GBG-Web">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:url" content="https://gbg-web.com/">
   <meta name="twitter:title" content="GBG-Web | Scott — Front-End Developer &amp; Designer">
   <meta name="twitter:description" content="Front-end developer &amp; designer in Gothenburg (Göteborg), Sweden. Vue.js, React &amp; Node.js specialist. Real-world site builds and published npm packages.">
@@ -39,6 +39,7 @@
   <meta name="twitter:image:alt" content="Scott — Front-End Developer &amp; Designer">
 
   <!-- PWA / Mobile -->
+  <meta name="application-name" content="GBG-Web">
   <meta name="theme-color" content="#0f172a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -47,6 +48,8 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="geo.region" content="SE-O">
   <meta name="geo.placename" content="Gothenburg">
+  <meta name="msapplication-TileColor" content="#0f172a">
+  <meta name="msapplication-TileImage" content="images/icon-144.png">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" sizes="180x180" href="images/icon-180.png">
   <link rel="apple-touch-icon" sizes="152x152" href="images/icon-152.png">
@@ -108,6 +111,31 @@
     "url": "https://gbg-web.com/",
     "description": "Portfolio and contact site for Scott Abraham Keinstrom, front-end developer and designer in Gothenburg (Göteborg), Sweden.",
     "inLanguage": "en",
+    "author": {
+      "@type": "Person",
+      "name": "Scott Abraham Keinstrom",
+      "url": "https://gbg-web.com/"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: WebApplication (PWA) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "GBG-Web",
+    "url": "https://gbg-web.com/",
+    "description": "Portfolio and contact site for Scott Abraham Keinstrom, front-end developer and designer in Gothenburg, Sweden. Installable as a Progressive Web App.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires a modern browser with JavaScript enabled",
+    "inLanguage": "en",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "SEK"
+    },
     "author": {
       "@type": "Person",
       "name": "Scott Abraham Keinstrom",
